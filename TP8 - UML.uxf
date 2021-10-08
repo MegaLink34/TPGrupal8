@@ -1,0 +1,27 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>60</y><w>210</w><h>190</h></coordinates><panel_attributes>Alumno
+--
+-idAlumno
+-legajo
+-nombre
+-apellido
+-fechaNac
+-activo
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>60</y><w>210</w><h>190</h></coordinates><panel_attributes>Materia
+--
+-idMateria
+-nombre
+-anio
+-activo
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>380</y><w>210</w><h>190</h></coordinates><panel_attributes>Inscripcion
+--
+-idInscripcion
+-alumno: Alumno
+-materia: Materia
+-nota
+-activo
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>240</y><w>90</w><h>160</h></coordinates><panel_attributes>lt=&lt;-
+se inscribe
+m1=1..*</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>240</y><w>270</w><h>160</h></coordinates><panel_attributes>lt=&lt;-
+es cursada
+m1=1..*</panel_attributes><additional_attributes>10;140;10;100;250;100;250;10</additional_attributes></element></diagram>
