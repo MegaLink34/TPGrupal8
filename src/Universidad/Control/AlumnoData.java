@@ -77,6 +77,20 @@ public class AlumnoData {
         }
     }
     
+    public void modificarEstado(int id){ //////// MAURI MAKED THIS
+        String sql="UPDATE `alumno` SET `activo`=? WHERE `idAlumno`=?";
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            Alumno a = this.buscarAlumno(id);
+            prepStat.setBoolean(1, !a.isActivo());
+            prepStat.setInt(2, id);
+            prepStat.executeUpdate();
+            prepStat.close();   
+        } catch (SQLException ex) {
+            System.out.println("Error de conexion en modificar Estado");
+        }
+    }
+    
     public Alumno buscarAlumno(int id){
         String comandoSql = "SELECT * FROM alumno WHERE idAlumno=?";
         Alumno alumno = null;
