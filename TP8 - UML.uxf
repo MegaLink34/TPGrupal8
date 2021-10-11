@@ -1,27 +1,117 @@
-<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>20</x><y>60</y><w>210</w><h>190</h></coordinates><panel_attributes>Alumno
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>608</y><w>240</w><h>400</h></coordinates><panel_attributes>&lt;&lt;java.time.LocalDate&gt;&gt;
+Alumno
 --
--idAlumno
--legajo
--nombre
--apellido
--fechaNac
--activo
+- idAlumno: int
+- legajo: int
+- nombre: String
+- apellido: String
+- fechaNac: LocalDate
+- activo: boolean
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>60</y><w>210</w><h>190</h></coordinates><panel_attributes>Materia
++ Alumno()
++ Alumno(legajo: int, nombre: String, 
+apellido: String, fechaNac: LocalDate,
+activo: boolean)
+     + getIdAlumno(): int
+     + getLegajo(): int
+     + getNombre(): String
+     + getApellido(): String
+     + getFechaNac(): LocalDate
+     + isActivo(): boolean
+     + toString(): String
+     + setIdAlumno(id: int): void
+     + setLegajo(legajo: int): void
+     + setNombre(nombre: String): void
+     + setApellido(apellido: String): void
+     + setFechaNac(fecha: LocalDate): void
+     + setActivo(activo: boolean): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>720</x><y>608</y><w>230</w><h>280</h></coordinates><panel_attributes>Materia
 --
--idMateria
--nombre
--anio
--activo
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>20</x><y>380</y><w>210</w><h>190</h></coordinates><panel_attributes>Inscripcion
+- idMateria
+- nombre
+- anio
+- activo
 --
--idInscripcion
--alumno: Alumno
--materia: Materia
--nota
--activo
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>240</y><w>90</w><h>160</h></coordinates><panel_attributes>lt=&lt;-
++ Materia()
++ Materia(nombre: String, anio: int, 
+activo: boolean)
+     + getIdMateria(): int
+     + getNombre(): String
+     + getAnio(): int
+     + getActivo(): boolean
+     + toString(): String
+     + setIdMateria(id: int): int
+     + setNombre(nombre: String): String
+     + setAnio(anio: int): int
+     + setActivo(activo: boolean): boolean
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>370</x><y>608</y><w>220</w><h>340</h></coordinates><panel_attributes>Inscripcion
+--
+- idInscripcion: int
+- alumno: Alumno
+- materia: Materia
+- nota: double
+- activo: boolean
+--
++ Inscripcion()
++ Inscripcion(materia: Materia,
+alumno: Alumno, nota double, 
+activo boolean)
+     + getIdInscripcion(): int
+     + getAlumno(): Alumno
+     + getMateria(): Materia
+     + getNota(): double
+     + isActivo(): boolean
+     + toString(): String
+     + setIdInscripcion(id: int): void
+     + setAlumno(alumno Alumno): void
+     + setMateria(materia: Materia): void
+     + setNote(nota: int): void
+     + setActivo(activo: boolean): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>638</y><w>160</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
 se inscribe
-m1=1..*</panel_attributes><additional_attributes>10;140;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>240</y><w>270</w><h>160</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..*</panel_attributes><additional_attributes>140;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>580</x><y>648</y><w>160</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
 es cursada
-m1=1..*</panel_attributes><additional_attributes>10;140;10;100;250;100;250;10</additional_attributes></element></diagram>
+m1=1..*</panel_attributes><additional_attributes>10;20;140;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>330</y><w>240</w><h>190</h></coordinates><panel_attributes>&lt;&lt;java.sql.Connection&gt;&gt;
+&lt;&lt;java.sql.DriverManager&gt;&gt;
+&lt;&lt;java.sql.SQLException&gt;&gt;
+Conexion
+--
+- url: String
+- usiario: String
+- password: String
+--
++ Conexion()
++ Conexion(url: String, usuario String, 
+password: String)
+     + getConexion(): Connection</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>687</x><y>40</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+MateriaData
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>367</x><y>40</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+InscripcionData
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>17</x><y>40</y><w>210</w><h>190</h></coordinates><panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+AlumnoData
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes><additional_attributes></additional_attributes></element></diagram>

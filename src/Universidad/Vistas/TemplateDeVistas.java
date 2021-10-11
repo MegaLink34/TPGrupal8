@@ -48,7 +48,7 @@ public class TemplateDeVistas extends javax.swing.JInternalFrame {
         jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalir.setText("Salir");
 
-        jButtonGuardar.setBackground(new java.awt.Color(0, 204, 0));
+        jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardar.setText("Guardar");
@@ -62,6 +62,7 @@ public class TemplateDeVistas extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NOMBRE DE LA VISTA");
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 153));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jTextFieldNombre.setText("jTextField1");
