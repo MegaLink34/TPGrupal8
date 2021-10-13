@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AlumnoData {
     private Connection conexion;
@@ -52,9 +54,49 @@ public class AlumnoData {
         }
     }
     
+    public void activarAlumno(int id){
+        String comandoSql = "UPDATE alumno activo=? WHERE idAlumno=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setBoolean(1, true);
+            
+            prepStat.setInt(2, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al activar");
+        }
+    }
+    
+    public void desactivarAlumno(int id){
+        String comandoSql = "UPDATE alumno activo=? WHERE idAlumno=?";
+        PreparedStatement prepStat;
+        
+        try {
+            prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setBoolean(1, false);
+            
+            prepStat.setInt(2, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al desactivar");
+        }
+    }
+    
     public void actualizarAlumno(Alumno alumno) {
         String comandoSql = "UPDATE alumno " +
-                "SET legajo=?,nombre=?,apellido=?,fechNac=?,activo=? WHERE idAlumno=?";
+                "SET legajo=?,nombre=?,apellido=?,fechNac=? WHERE idAlumno=?";
         PreparedStatement prepStat;
         
         try {
@@ -64,7 +106,6 @@ public class AlumnoData {
             prepStat.setString(2, alumno.getNombre());
             prepStat.setString(3, alumno.getApellido());
             prepStat.setDate(4, Date.valueOf(alumno.getFechaNac()));
-            prepStat.setBoolean(5, alumno.isActivo());
             
             prepStat.setInt(6, alumno.getIdAlumno());
             
@@ -74,20 +115,6 @@ public class AlumnoData {
             
         } catch (SQLException ex) {
             System.out.println("Error al modificar");
-        }
-    }
-    
-    public void modificarEstado(int id){ //////// MAURI MAKED THIS
-        String sql="UPDATE `alumno` SET `activo`=? WHERE `idAlumno`=?";
-        try {
-            PreparedStatement prepStat = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            Alumno a = this.buscarAlumno(id);
-            prepStat.setBoolean(1, !a.isActivo());
-            prepStat.setInt(2, id);
-            prepStat.executeUpdate();
-            prepStat.close();   
-        } catch (SQLException ex) {
-            System.out.println("Error de conexion en modificar Estado");
         }
     }
     
@@ -150,5 +177,52 @@ public class AlumnoData {
         }
         
         return alumnos;
+    }
+    
+    public List<Alumno> obtenerAlumnosActivos(){
+        String comandoSql = "SELECT * FROM alumno WHERE activo=true";
+        List<Alumno> alumnos = new ArrayList<>();
+        Alumno alumno = null;
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            while (resultSet.next()){
+                
+                alumno = new Alumno();
+                
+                alumno.setIdAlumno(resultSet.getInt("idAlumno"));
+                alumno.setLegajo(resultSet.getInt("legajo"));
+                alumno.setNombre(resultSet.getString("nombre"));
+                alumno.setApellido(resultSet.getString("apellido"));
+                alumno.setFechaNac(resultSet.getDate("fechNac").toLocalDate());
+                alumno.setActivo(resultSet.getBoolean("activo"));
+                
+                alumnos.add(alumno);
+                
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+        }
+        
+        return alumnos;
+    }
+    
+    public void borrarAlumno(int id){
+        String comandoSql = "DELETE * FROM alumno WHERE id=?";
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setInt(1, id);
+            
+            prepStat.executeUpdate();
+            
+            prepStat.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al eliminar Alumno");
+        }
     }
 }

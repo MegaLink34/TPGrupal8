@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/Vistas/TemplateDeVistas.java</file>
-            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/Vistas/VistaInicio.java</file>
-            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/Vistas/MenuPrincipal.java</file>
+            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/Control/InscripcionData.java</file>
+            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/Control/MateriaData.java</file>
+            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/Control/AlumnoData.java</file>
+            <file>file:/C:/Users/Aryl/Documents/GitHub/TPGrupal8/src/Universidad/TestModelo/TestModelo.java</file>
         </group>
     </open-files>
 </project-private>

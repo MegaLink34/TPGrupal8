@@ -14,7 +14,7 @@ public class TestModelo {
         try {
             Conexion conexion = new Conexion("jdbc:mysql://localhost/universidad", "root", "");
             
-            AlumnoData alumnoData = new AlumnoData(conexion);
+            AlumnoData alumnoData = new AlumnoData(conexion);/*
             Alumno alumno = new Alumno(1003, "Adriel Iván", "Gómez", LocalDate.of(1989,06,07), true);
             alumnoData.buscarAlumno(1);
             alumnoData.obtenerAlumnos();
@@ -31,6 +31,7 @@ public class TestModelo {
             materiaData.obtenerMaterias();
             materiaData.actualizarMateria(materia);
             materiaData.obtenerMaterias();
+            */
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TestModelo.class.getName()).log(Level.SEVERE, null, ex);
