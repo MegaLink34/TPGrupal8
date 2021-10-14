@@ -212,7 +212,7 @@ public class AlumnoData {
     }
     
     public void borrarAlumno(int id){
-        String comandoSql = "DELETE * FROM alumno WHERE id=?";
+        String comandoSql = "DELETE * FROM alumno WHERE idAlumno=?";
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             

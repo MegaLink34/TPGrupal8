@@ -9,6 +9,11 @@ public class Inscripcion {
     
     public Inscripcion(){}
 
+    public Inscripcion(Materia materia, Alumno alumno) {
+        this.materia = materia;
+        this.alumno = alumno;
+    }
+
     public Inscripcion(Materia materia, Alumno alumno, double nota, boolean activo) {
         this.materia = materia;
         this.alumno = alumno;
@@ -49,11 +54,11 @@ public class Inscripcion {
         this.idInscripcion = idInscripcion;
     }
 
-    public void setIdMateria(Materia materia) {
+    public void setMateria(Materia materia) {
         this.materia = materia;
     }
 
-    public void setIdAlumno(Alumno alumno) {
+    public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
     }
 
