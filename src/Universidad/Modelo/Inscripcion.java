@@ -9,6 +9,20 @@ public class Inscripcion {
     
     public Inscripcion(){}
 
+<<<<<<< Updated upstream
+=======
+    public Inscripcion(Materia materia, Alumno alumno) {
+        this.materia = materia;
+        this.alumno = alumno;
+    }
+    
+    public Inscripcion(Materia materia, Alumno alumno, double nota) {
+        this.materia = materia;
+        this.alumno = alumno;
+        this.nota = nota;
+    }
+
+>>>>>>> Stashed changes
     public Inscripcion(Materia materia, Alumno alumno, double nota, boolean activo) {
         this.materia = materia;
         this.alumno = alumno;

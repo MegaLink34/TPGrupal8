@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2021 a las 23:12:24
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 14-10-2021 a las 17:38:19
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 7.4.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -37,6 +36,17 @@ CREATE TABLE `alumno` (
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`idAlumno`, `legajo`, `nombre`, `apellido`, `fechNac`, `activo`) VALUES
+(1, 1001, 'Agostina Ailén', 'Fernández Rodríguez', '1996-05-15', 1),
+(2, 1002, 'Leandro', 'Heredia', '1996-08-06', 1),
+(7, 1003, 'Adriel Iván', 'Gómez', '1989-06-07', 1),
+(8, 1005, 'Gabriel', 'Giménez', '1989-06-07', 1),
+(10, 1006, 'Gabriel', 'Giménez', '1989-06-07', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +60,14 @@ CREATE TABLE `inscripcion` (
   `nota` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `inscripcion`
+--
+
+INSERT INTO `inscripcion` (`idInsc`, `idAlumno`, `idMateria`, `nota`) VALUES
+(4, 8, 8, 7),
+(6, 10, 10, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +80,22 @@ CREATE TABLE `materia` (
   `anio` int(11) NOT NULL,
   `activo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `materia`
+--
+
+INSERT INTO `materia` (`idMateria`, `nombre`, `anio`, `activo`) VALUES
+(1, 'Laboratorio I', 1, 1),
+(2, 'Laboratorio I', 1, 1),
+(3, 'Laboratorio I', 1, 1),
+(4, 'Laboratorio I', 1, 1),
+(5, 'Laboratorio I', 1, 1),
+(6, 'Web', 1, 1),
+(7, 'Matemática', 1, 1),
+(8, 'Francés', 4, 1),
+(9, 'Francés', 4, 1),
+(10, 'Francés', 4, 1);
 
 --
 -- Índices para tablas volcadas
@@ -78,9 +112,7 @@ ALTER TABLE `alumno`
 -- Indices de la tabla `inscripcion`
 --
 ALTER TABLE `inscripcion`
-  ADD PRIMARY KEY (`idInsc`),
-  ADD KEY `alumno` (`idAlumno`),
-  ADD KEY `materia` (`idMateria`);
+  ADD PRIMARY KEY (`idInsc`);
 
 --
 -- Indices de la tabla `materia`
@@ -96,19 +128,19 @@ ALTER TABLE `materia`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripcion`
 --
 ALTER TABLE `inscripcion`
-  MODIFY `idInsc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idInsc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

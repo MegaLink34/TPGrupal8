@@ -16,6 +16,15 @@ public class Alumno {
     
     public Alumno() {
     }
+    
+    public Alumno(int id, int legajo, String nombre, String apellido, LocalDate fechaNac, boolean activo) {
+        this.legajo = legajo;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.fechaNac = fechaNac;
+        this.activo = activo;
+        this.idAlumno = id;
+    }
 
     public Alumno(int legajo, String nombre, String apellido, LocalDate fechaNac, boolean activo) {
         this.legajo = legajo;
