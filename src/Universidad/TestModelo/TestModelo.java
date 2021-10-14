@@ -28,6 +28,7 @@ public class TestModelo {
             materiaData.guardarMateria(materia);
             System.out.println(materiaData.buscarMateria(11));
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             
             InscripcionData insDat = new InscripcionData(conexion);
             
@@ -43,6 +44,11 @@ public class TestModelo {
             InscripcionData insDat = new InscripcionData(conexion);
             
 >>>>>>> Stashed changes
+=======
+            
+            InscripcionData insDat = new InscripcionData(conexion);
+            
+>>>>>>> Stashed changes
             insDat.guardarCursada(inscripcion);
             
             
@@ -50,6 +56,9 @@ public class TestModelo {
             /*
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -67,6 +76,8 @@ public class TestModelo {
             materiaData.obtenerMaterias();
             materiaData.actualizarMateria(materia);
             materiaData.obtenerMaterias();
+            
+            
             
             
             
