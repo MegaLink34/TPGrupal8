@@ -31,14 +31,20 @@ public class TestModelo {
             InscripcionData insDat = new InscripcionData(conexion);
             
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             AlumnoData alumnoData = new AlumnoData(conexion);
             Alumno alumno = new Alumno(1003, "Adriel Iván", "Gómez", LocalDate.of(1989,06,07), true);
 =======
+=======
+>>>>>>> Stashed changes
             insDat.guardarCursada(inscripcion);
             
             
             //System.out.println(alumnoData.buscarAlumno(1));
             /*
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             alumnoData.buscarAlumno(1);
             alumnoData.obtenerAlumnos();
@@ -52,6 +58,8 @@ public class TestModelo {
             materiaData.obtenerMaterias();
             materiaData.actualizarMateria(materia);
             materiaData.obtenerMaterias();
+            
+            
             
             
             
