@@ -33,7 +33,7 @@ public class UsuarioData {
             
             prepStat.setString(1, usuario.getNombreUsuario());
             prepStat.setString(2, usuario.getPasswordUsuario());
-            prepStat.setInt(3, usuario.getRolUsuario());
+            prepStat.setString(3, usuario.getRolUsuario());
             prepStat.setBoolean(4, usuario.isActivoUsuario());
             
             prepStat.executeUpdate();
@@ -101,7 +101,7 @@ public class UsuarioData {
             
             prepStat.setString(2, usuario.getNombreUsuario());
             prepStat.setString(3, usuario.getPasswordUsuario());
-            prepStat.setInt(1, usuario.getRolUsuario());
+            prepStat.setString(1, usuario.getRolUsuario());
             prepStat.setInt(6, usuario.getIdUsuario());
             
             prepStat.executeUpdate();
@@ -129,7 +129,36 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
+                usuario.setActivoUsuario(resultSet.getBoolean("activo"));
+                
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar");
+        }
+        
+        return usuario;
+    }
+    
+    public Usuario buscarUsuario(String user, String pass){
+        String comandoSql = "SELECT * FROM usuario WHERE nombreUsuario=? AND passwordUsuario=?";
+        Usuario usuario = null;
+        
+        try {
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setString(1, user);
+            prepStat.setString(2, pass);
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            if (resultSet.next()){
+                usuario = new Usuario();
+                
+                usuario.setIdUsuario(resultSet.getInt("idUsuario"));
+                usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
+                usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
+                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                 
             }
@@ -158,7 +187,7 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                                 
                 usuarios.add(usuario);
@@ -189,7 +218,7 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                                 
                 usuarios.add(usuario);
