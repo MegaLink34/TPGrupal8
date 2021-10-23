@@ -186,9 +186,7 @@ public class VistaInicio extends javax.swing.JInternalFrame {
             System.out.println("Ingreso exitoso");
             VistaInicio.verificarSesion(user);
             
-            VistaMenuAlumno menuAlumno = VistaMenuAlumno(user);
-            MenuPrincipal principal = new MenuPrincipal();
-            principal.agregarVentana(menuAlumno);
+            dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuario no encontrado");
         }
