@@ -5,27 +5,113 @@
  */
 package Universidad.Vistas;
 
+import Universidad.Modelo.Conexion;
+import Universidad.Modelo.Usuario;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author EL MEGAS
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+    private static Usuario user;
+    private Conexion conexion;
 
     /**
      * Creates new form MenuPrincipal
      */
     
-    /* Inicié una vista de inicio en el constructor, ESTA A PRUEBA POR FUNCIONALIDAD */
+    /* Inicié una vista de inicio en el constructor, ESTA A PRUEBA POR FUNCIONALIDAD.... FUNCIONAAAAAAAAAAAAAAA */
     public MenuPrincipal() {
         initComponents();
         
-        VistaInicio vistaInit = new VistaInicio();
-        jDesktopPane.removeAll();
-        jDesktopPane.moveToFront(vistaInit);
-        jDesktopPane.repaint();
-        jDesktopPane.add(vistaInit);
+        try {
+            conexion = new Conexion();
+        } catch (ClassNotFoundException ex) {
+            System.out.println("No se pudo crear conexion");
+        }
         
-        vistaInit.setVisible(true);
+        if (user == null){
+            VistaInicio vistaInit = new VistaInicio(conexion);
+            jDesktopPane.removeAll();
+            jDesktopPane.moveToFront(vistaInit);
+            jDesktopPane.repaint();
+            jDesktopPane.add(vistaInit);
+
+            vistaInit.setVisible(true);
+        } else {
+            VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(user);
+            
+            jDesktopPane.removeAll();
+            jDesktopPane.moveToFront(vistaMenuAlumno);
+            jDesktopPane.repaint();
+            jDesktopPane.add(vistaMenuAlumno);
+
+            vistaMenuAlumno.setVisible(true);
+        }
+    }
+    
+    public MenuPrincipal(Usuario user) {
+        initComponents();
+        
+        try {
+            conexion = new Conexion();
+        } catch (ClassNotFoundException ex) {
+            System.out.println("No se pudo crear conexion");
+        }
+        
+        VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(user);
+            
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaMenuAlumno);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaMenuAlumno);
+        vistaMenuAlumno.setVisible(true);
+    }
+    
+    public void agregarVentana(JInternalFrame subVentana) {
+       
+       this.jDesktopPane1.add(subVentana);
+       
+        subVentana.toFront();
+        subVentana.setVisible(true);
+    }
+    
+    public static void setIngreso(Usuario user){
+        MenuPrincipal.user = user;
+    }
+    
+    public Usuario getUser(){
+        return MenuPrincipal.user;
+    }
+    
+    public void sesionAlumno(Usuario usuario){
+        VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(usuario);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaMenuAlumno);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaMenuAlumno);
+
+        vistaMenuAlumno.setVisible(true);
+    }
+    
+    public void sesionDocente(Usuario usuario){
+        VistaMenuDocente vistaMenuDocente = new VistaMenuDocente(usuario);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaMenuDocente);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaMenuDocente);
+
+        vistaMenuDocente.setVisible(true);
+    }
+    
+    public void iniciarSesion(Usuario user){
+        if ("Alumno".equals(user.getRolUsuario())){
+            this.sesionAlumno(user);
+        } else if ("Docente".equals(user.getRolUsuario())){
+            this.sesionDocente(user);
+        }
     }
 
     /**
@@ -37,10 +123,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jDesktopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,13 +165,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -118,6 +216,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

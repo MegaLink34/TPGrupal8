@@ -5,17 +5,31 @@
  */
 package Universidad.Vistas;
 
+import Universidad.Control.UsuarioData;
+import Universidad.Modelo.Conexion;
+import Universidad.Modelo.Usuario;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  * Esta es una vista de prueba para probar algo
  * @author Aryl
  */
 public class VistaInicio extends javax.swing.JInternalFrame {
-
+    private UsuarioData usuarioData;
+    private Conexion conexion;
+    
     /**
      * Creates new form VistaInicio
      */
-    public VistaInicio() {
+    public VistaInicio(Conexion conexion) {
         initComponents();
+        
+        this.conexion = conexion;
+        usuarioData = new UsuarioData(conexion);
     }
 
     /**
@@ -60,6 +74,11 @@ public class VistaInicio extends javax.swing.JInternalFrame {
         jButtonIngresar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonIngresar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonIngresar.setText("Ingresar");
+        jButtonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -100,6 +119,11 @@ public class VistaInicio extends javax.swing.JInternalFrame {
         jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,6 +171,32 @@ public class VistaInicio extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
+        String usuario = jTextFieldUsuario.getText();
+        String pass = jPasswordFieldContraseña.getText();
+        Usuario user = null;
+        
+        user = usuarioData.buscarUsuario(usuario, pass);
+        
+        if (user != null) {
+            System.out.println("Ingreso exitoso");
+            VistaInicio.verificarSesion(user);
+            
+            VistaMenuAlumno menuAlumno = VistaMenuAlumno(user);
+            MenuPrincipal principal = new MenuPrincipal();
+            principal.agregarVentana(menuAlumno);
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+        }
+    }//GEN-LAST:event_jButtonIngresarActionPerformed
+
+    public static void verificarSesion(Usuario user){
+        MenuPrincipal.setIngreso(user);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIngresar;
