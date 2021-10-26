@@ -18,9 +18,9 @@ public class UsuarioData {
         try {
             this.conexion = conexion.getConexion();
         } catch (SQLException ex) {
-            System.out.println("Error en la conexión");
+            System.out.println("Error en la conexión UsuarioData");
         }
-        
+
     }
     
     public void guardarUsuario(Usuario usuario){
@@ -33,7 +33,7 @@ public class UsuarioData {
             
             prepStat.setString(1, usuario.getNombreUsuario());
             prepStat.setString(2, usuario.getPasswordUsuario());
-            prepStat.setString(3, usuario.getRolUsuario());
+            prepStat.setInt(3, usuario.getRolUsuario());
             prepStat.setBoolean(4, usuario.isActivoUsuario());
             
             prepStat.executeUpdate();
@@ -101,7 +101,7 @@ public class UsuarioData {
             
             prepStat.setString(2, usuario.getNombreUsuario());
             prepStat.setString(3, usuario.getPasswordUsuario());
-            prepStat.setString(1, usuario.getRolUsuario());
+            prepStat.setInt(1, usuario.getRolUsuario());
             prepStat.setInt(6, usuario.getIdUsuario());
             
             prepStat.executeUpdate();
@@ -129,7 +129,7 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                 
             }
@@ -144,8 +144,10 @@ public class UsuarioData {
     public Usuario buscarUsuario(String user, String pass){
         String comandoSql = "SELECT * FROM usuario WHERE nombreUsuario=? AND passwordUsuario=?";
         Usuario usuario = null;
+        System.out.println("sql" + comandoSql);
         
         try {
+            System.out.println(conexion.prepareStatement(comandoSql));
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             
             prepStat.setString(1, user);
@@ -158,7 +160,7 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                 
             }
@@ -187,7 +189,7 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                                 
                 usuarios.add(usuario);
@@ -218,7 +220,7 @@ public class UsuarioData {
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
                 usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
                 usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
-                usuario.setRolUsuario(resultSet.getString("rolUsuario"));
+                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
                 usuario.setActivoUsuario(resultSet.getBoolean("activo"));
                                 
                 usuarios.add(usuario);
