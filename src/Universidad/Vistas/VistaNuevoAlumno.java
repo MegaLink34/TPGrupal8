@@ -5,31 +5,19 @@
  */
 package Universidad.Vistas;
 
-import Universidad.Control.AlumnoData;
-import Universidad.Modelo.Alumno;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Iterator;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Mauri
  */
 public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
-    private AlumnoData ad;
-    private boolean ok;
-    private MenuPrincipal menu;
-    private Usuario user;
-    
+
     /**
      * Creates new form VistaNuevoAlumno
      */
     public VistaNuevoAlumno() {
         initComponents();
+
+
     }
 
     /**
@@ -43,35 +31,33 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jTextLegajo = new javax.swing.JTextField();
-        jTextApellido = new javax.swing.JTextField();
-        jTextNombre = new javax.swing.JTextField();
-        jTextFecha = new javax.swing.JTextField();
+        jtextApellido = new javax.swing.JTextField();
+        jtextNombre = new javax.swing.JTextField();
+        jtextFecha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButtonBuscar = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jCheckBoxEstado = new javax.swing.JCheckBox();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
 
         jTextLegajo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jTextApellido.setEditable(false);
-        jTextApellido.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jtextApellido.setEditable(false);
+        jtextApellido.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jTextNombre.setEditable(false);
-        jTextNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jtextNombre.setEditable(false);
+        jtextNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jTextFecha.setEditable(false);
-        jTextFecha.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jtextFecha.setEditable(false);
+        jtextFecha.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel1.setText("Número de legajo");
@@ -85,11 +71,11 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel4.setText("Fecha de nacimiento");
 
-        jButtonBuscar.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jButtonBuscar.setText("Buscar");
-        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscar.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarActionPerformed(evt);
+                jbBuscarActionPerformed(evt);
             }
         });
 
@@ -101,43 +87,20 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
         jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardar.setText("Guardar");
-        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGuardarActionPerformed(evt);
-            }
-        });
 
         jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
         jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalir.setText("Salir");
-        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalirActionPerformed(evt);
-            }
-        });
 
-        jButtonLimpiar.setBackground(new java.awt.Color(153, 153, 153));
-        jButtonLimpiar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonLimpiar.setText("Limpiar");
-        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLimpiarActionPerformed(evt);
-            }
-        });
+        jButton4.setBackground(new java.awt.Color(153, 153, 153));
+        jButton4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setText("Limpiar");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("AGREGAR ALUMNO");
-
-        jCheckBoxEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        jCheckBoxEstado.setText(" Activado");
-        jCheckBoxEstado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBoxEstadoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -156,26 +119,22 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel4))
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                                    .addComponent(jTextApellido, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtextNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtextApellido, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonBuscar))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jbBuscar))
+                                    .addComponent(jtextFecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5))
-                                    .addComponent(jCheckBoxEstado)))
+                                        .addComponent(jLabel5))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -194,32 +153,26 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonBuscar)
+                            .addComponent(jbBuscar)
                             .addComponent(jLabel1)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jCheckBoxEstado)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtextFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonSalir)
-                    .addComponent(jButtonLimpiar))
+                    .addComponent(jButton4))
                 .addGap(28, 28, 28))
         );
 
@@ -242,115 +195,15 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        int legajo = 0;
-        ok = false;
-        
-        try{
-            legajo = Integer.parseInt(jTextLegajo.getText());
-        }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
-        }
-        if(legajo==0){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
-        }
-            else {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
-                Iterator it = ad.obtenerAlumnos().iterator();
-                while(it.hasNext()){
-                    Alumno a1 = (Alumno)it.next();
-                    if(legajo == a1.getLegajo()){
-                        id = a1.getIdAlumno();
-                        jTextApellido.setText(a1.getApellido());
-                        jTextNombre.setText(a1.getNombre());
-                        jTextFecha.setText(a1.getFechaNac().format(formatter));
-                        jDateChooser1.setDate(java.sql.Date.valueOf(a1.getFechaNac()));
-                        
-                        if(a1.isActivo()){
-                            jCheckBoxEstado.setSelected(true);
-                        }
-                        else { 
-                            jCheckBoxEstado.setSelected(false);
-                        }
-                        
-                        jTextApellido.setEditable(true);
-                        jTextNombre.setEditable(true);
-                        jCheckBoxEstado.setEnabled(true);
-                        jButtonGuardar.setEnabled(true);
-                        ok = true;
-                    }
-                }
-                if(ok == false){
-                    this.jButtonLimpiarActionPerformed(evt);
-                    jTextApellido.setEditable(true);
-                    jTextNombre.setEditable(true);
-                    jTextLegajo.setText(String.valueOf(legajo));
-                    jCheckBoxEstado.setEnabled(true);
-                    JOptionPane.showMessageDialog(this , legajo+" ,está disponible para usar");
-                    jButtonGuardar.setEnabled(true);
-                }
-            }
-    }//GEN-LAST:event_jButtonBuscarActionPerformed
-
-    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
-        // TODO add your handling code here:
-        menu.sesionAlumno(user)
-    }//GEN-LAST:event_jButtonSalirActionPerformed
-
-    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
-        // TODO add your handling code here:
-        jTextLegajo.setText("");
-        jTextApellido.setText("");
-        jTextNombre.setText("");
-        jTextFecha.setText("");
-        jButtonGuardar.setEnabled(false);
-    }//GEN-LAST:event_jButtonLimpiarActionPerformed
-
-    private void jCheckBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEstadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBoxEstadoActionPerformed
-
-    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-        // TODO add your handling code here:
-        int legajo=0;
-        try{
-            legajo=Integer.parseInt(jTextLegajo.getText());
-        }
-        catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this,"Volver a cargar, en campo legajo ingresar solo numeros");
-        }
-        String apellido=jTextApellido.getText();
-        String nombre=jTextNombre.getText();
-        Date fecha = jDateChooser1.getDate();
-        
-        if(fecha==null||legajo==0||apellido==null||nombre==null)
-            JOptionPane.showMessageDialog(this,"Rellene todos los campos, apellido, nombre, legajo y fecha");
-        else{
-            LocalDate fe = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            System.out.println(fe);
-            if (ok== false) {
-                Alumno a1 = new Alumno(legajo, nombre, apellido, fe, jCheckBoxEstado.isSelected());
-                ad.guardarAlumno(a1);
-            }
-                else {
-                    Alumno a1 = new Alumno(legajo, nombre, apellido, fe, jCheckBoxEstado.isSelected());
-                    ad.actualizarAlumno(a1);
-                }
-            jButtonGuardar.setEnabled(false);
-            this.jButtonLimpiarActionPerformed(evt);
-        }
-        this.jButtonLimpiarActionPerformed(evt);
-    }//GEN-LAST:event_jButtonGuardarActionPerformed
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+    
+    }//GEN-LAST:event_jbBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonSalir;
-    private javax.swing.JCheckBox jCheckBoxEstado;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -359,9 +212,10 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextApellido;
-    private javax.swing.JTextField jTextFecha;
     private javax.swing.JTextField jTextLegajo;
-    private javax.swing.JTextField jTextNombre;
+    private javax.swing.JButton jbBuscar;
+    private javax.swing.JTextField jtextApellido;
+    private javax.swing.JTextField jtextFecha;
+    private javax.swing.JTextField jtextNombre;
     // End of variables declaration//GEN-END:variables
 }

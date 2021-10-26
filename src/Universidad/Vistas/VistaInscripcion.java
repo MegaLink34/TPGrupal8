@@ -210,7 +210,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,"No es posible, alumno ya se encuentra inscripto a la materia");
             jButtonInscripcion.setEnabled(false);
         }
-    }
+        }
     }//GEN-LAST:event_jButtonVerificarActionPerformed
 
     private void jButtonInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscripcionActionPerformed
