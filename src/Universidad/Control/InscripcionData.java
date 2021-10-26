@@ -241,4 +241,118 @@ public class InscripcionData {
 
         return ad.buscarMateria(id);
     }
+    
+    public List<Materia> obtenerMateriasInscriptas(int id){ // Mauri
+        ArrayList<Materia> lm = new ArrayList<>();
+        Materia m;
+        String sql= ("SELECT m.idMateria, m.nombre, m.anio, m.activo FROM inscripcion AS c, materia as m WHERE c.idMateria = m.idMateria AND idAlumno=?");
+        try {
+            PreparedStatement ps= conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                m = new Materia();
+                m.setIdMateria(rs.getInt("idMateria"));
+                m.setNombre(rs.getString("nombre"));
+                m.setAnio(rs.getInt("anio"));
+                m.setActivo(rs.getBoolean("activo"));
+                lm.add(m);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion en metodo obtenerMateriasCursadas.");
+        }
+        return lm;
+    }
+    
+    public float buscarNotaInscripcion(int idA ,int idM){
+       int resul=0; 
+       String sql="SELECT `nota` FROM `inscripcion` WHERE idAlumno=? and idMateria=?";     
+        try {
+            PreparedStatement ps= conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idA);
+            ps.setInt(2, idM);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+            resul=rs.getInt("nota");}
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+        return resul;
+    }
+    
+    public List<Inscripcion> obtenerInscripciones(){
+        ArrayList<Inscripcion> li = new ArrayList<>();
+        Inscripcion i;
+        String sql="SELECT * FROM inscripcion";
+        try {
+            PreparedStatement ps= conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                i = new Inscripcion();
+                Alumno a = buscarAlumno(rs.getInt("idAlumno"));
+                Materia m = buscarMateria(rs.getInt("idMateria"));
+                i.setAlumno(a);
+                i.setMateria(m);
+                i.setNota(rs.getInt("nota"));
+                i.setIdInscripcion(rs.getInt("idInscripcion"));
+                li.add(i);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+        return li;
+    
+    }
+    
+    public void borrarInscripcionDeUnaMateria(int idA, int idM){
+        String sql="DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";     
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, idA);
+            ps.setInt(2, idM);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+    }
+    
+    public List <Inscripcion> obtenerInscripcionxAlumno(int id){
+        ArrayList <Inscripcion> li = new ArrayList<>();
+        Inscripcion i;
+        String sql="SELECT * FROM inscripcion WHERE idAlumno=?";
+        try {
+            PreparedStatement ps= conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1,id);
+            ResultSet rs= ps.executeQuery();
+            while(rs.next()){
+                i = new Inscripcion();
+                Alumno a = buscarAlumno(rs.getInt("idAlumno"));
+                Materia m = buscarMateria(rs.getInt("idMateria"));
+                i.setAlumno(a);
+                i.setMateria(m);
+                i.setNota(rs.getFloat("nota"));
+                i.setIdInscripcion(rs.getInt("idInscripcion"));
+                li.add(i);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+        return li;
+    }
+    
+    public void actualizarNotaInscripcion(int idA ,int idM, double nota){
+        String sql="UPDATE inscripcion SET nota = ? WHERE idAlumno = ? AND idMateria = ?";     
+        try {
+            PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setDouble(1, nota);
+            ps.setInt(2, idA);
+            ps.setInt(3, idM);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error de conexion.");
+        }
+    }
 }
+
