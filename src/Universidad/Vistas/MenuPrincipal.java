@@ -118,8 +118,58 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vistaInscripcionAlumno.setVisible(true);
     }
     
+     public void verInscripcionBajaAlumno(){
+        VistaInscripcionBajaAlumno vistaInscripcionBajaAlumno = new VistaInscripcionBajaAlumno(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaInscripcionBajaAlumno);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaInscripcionBajaAlumno);
+
+        vistaInscripcionBajaAlumno.setVisible(true);
+    }
+     
+     public void verInscriptosPorMateria(){
+        VistaVerInscriptos vistaVerInscriptos = new VistaVerInscriptos(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaVerInscriptos);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaVerInscriptos);
+
+        vistaVerInscriptos.setVisible(true);
+     }
+     
+     public void verVerModNotas(){
+        VistaVerModNotas vistaVerModNotas = new VistaVerModNotas(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaVerModNotas);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaVerModNotas);
+
+        vistaVerModNotas.setVisible(true);
+     }
+     
+     public void verVerModAlumno(){
+        VistaVerModAlumno vistaVerModAlumno = new VistaVerModAlumno(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaVerModAlumno);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaVerModAlumno);
+
+        vistaVerModAlumno.setVisible(true);
+     }
+     
+     public void verVerModMateria(){
+        VistaVerModMateria vistaVerModMateria = new VistaVerModMateria(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaVerModMateria);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaVerModMateria);
+
+        vistaVerModMateria.setVisible(true);
+     }
+    
     public void sesionDocente(Usuario usuario){
-        VistaMenuDocente vistaMenuDocente = new VistaMenuDocente(usuario);
+        VistaMenuDocente vistaMenuDocente = new VistaMenuDocente(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vistaMenuDocente);
         jDesktopPane.repaint();

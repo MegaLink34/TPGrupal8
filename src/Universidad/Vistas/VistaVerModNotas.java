@@ -7,6 +7,8 @@ package Universidad.Vistas;
 
 import Universidad.Control.AlumnoData;
 import Universidad.Control.InscripcionData;
+import Universidad.Control.MateriaData;
+import Universidad.Control.UsuarioData;
 import Universidad.Modelo.*;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -15,17 +17,25 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Mauri
  */
-public class VistaVerNotas extends javax.swing.JInternalFrame {
+public class VistaVerModNotas extends javax.swing.JInternalFrame {
     private InscripcionData insDat;
     private AlumnoData ad;
+    private Usuario user;
+    private MateriaData md;
+    private UsuarioData udat;
+    private MenuPrincipal menu;
     private DefaultTableModel dtm;
     /**
      * Creates new form VistaVerInscriptos
      */
-    public VistaVerNotas(AlumnoData ad, InscripcionData insDat) {
+    public VistaVerModNotas(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat) {
         initComponents();
         this.insDat = insDat;
-        this.ad = ad;
+        this.md = md;
+        this.user = user;
+        this.ad = ad;        
+        this.udat = udat;
+        this.menu = menu;
         dtm = (DefaultTableModel) jtInscriptos.getModel();
         Iterator <Alumno> it = ad.obtenerAlumnos().iterator();
         jComboBoxAlumno.addItem(null);
@@ -303,6 +313,7 @@ public class VistaVerNotas extends javax.swing.JInternalFrame {
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
         dispose();
+        menu.sesionDocente(user);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarActionPerformed

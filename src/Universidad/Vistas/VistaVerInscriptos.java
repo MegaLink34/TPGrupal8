@@ -5,8 +5,10 @@
  */
 package Universidad.Vistas;
 
+import Universidad.Control.AlumnoData;
 import Universidad.Control.MateriaData;
 import Universidad.Control.InscripcionData;
+import Universidad.Control.UsuarioData;
 import Universidad.Modelo.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,16 +20,24 @@ import javax.swing.table.DefaultTableModel;
  * @author Mauri
  */
 public class VistaVerInscriptos extends javax.swing.JInternalFrame {
+    private Usuario user;
     private InscripcionData insDat;
+    private AlumnoData ad;
     private MateriaData md;
+    private UsuarioData udat;
+    private MenuPrincipal menu;
     private DefaultTableModel dtm;
     private List<Alumno> alumnoJList;
     /**
      * Creates new form VistaVerInscriptos
      */
-    public VistaVerInscriptos(InscripcionData insDat, MateriaData md){
+    public VistaVerInscriptos(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat){
         this.insDat = insDat;
         this.md = md;
+        this.user = user;
+        this.ad = ad;        
+        this.udat = udat;
+        this.menu = menu;
         initComponents();
         Iterator <Materia> it2=md.obtenerMaterias().iterator();
         jComboBoxMaterias.addItem(null);
@@ -61,6 +71,7 @@ public class VistaVerInscriptos extends javax.swing.JInternalFrame {
         jComboBoxMaterias = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jButtonBorrar = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -203,19 +214,25 @@ public class VistaVerInscriptos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(JCheckBoxVerInactivos))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonBorrar)
-                        .addContainerGap())))
+                .addGap(24, 24, 24)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JCheckBoxVerInactivos)
+                    .addComponent(jButtonBorrar)))
         );
+
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -224,13 +241,18 @@ public class VistaVerInscriptos extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalir)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,6 +290,11 @@ public class VistaVerInscriptos extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null,"Cursada borrada");
         }
     }//GEN-LAST:event_jButtonBorrarActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.sesionDocente(user);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void obtenerAlumnosNotas(Materia m){ 
         alumnoJList = new ArrayList<>();
@@ -315,6 +342,7 @@ public class VistaVerInscriptos extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox JCheckBoxVerInactivos;
     private javax.swing.JButton jButtonBorrar;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JComboBox<Materia> jComboBoxMaterias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

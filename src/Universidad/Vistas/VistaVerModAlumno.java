@@ -6,7 +6,11 @@
 package Universidad.Vistas;
 
 import Universidad.Control.AlumnoData;
+import Universidad.Control.InscripcionData;
+import Universidad.Control.MateriaData;
+import Universidad.Control.UsuarioData;
 import Universidad.Modelo.Alumno;
+import Universidad.Modelo.Usuario;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -19,16 +23,26 @@ import javax.swing.JOptionPane;
  *
  * @author Mauri
  */
-public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
-    private AlumnoData ad;
+public class VistaVerModAlumno extends javax.swing.JInternalFrame {
     private boolean ok;
-    private MenuPrincipal menu;
     private Usuario user;
+    private InscripcionData insDat;
+    private AlumnoData ad;
+    private MateriaData md;
+    private UsuarioData udat;
+    private MenuPrincipal menu;
+    private int id;
     
     /**
      * Creates new form VistaNuevoAlumno
      */
-    public VistaNuevoAlumno() {
+    public VistaVerModAlumno(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat) {
+        this.insDat = insDat;
+        this.md = md;
+        this.user = user;
+        this.ad = ad;        
+        this.udat = udat;
+        this.menu = menu;
         initComponents();
     }
 
@@ -129,7 +143,7 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("AGREGAR ALUMNO");
+        jLabel7.setText("AGREGAR/MODIFICAR ALUMNO");
 
         jCheckBoxEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jCheckBoxEstado.setText(" Activado");
@@ -148,6 +162,11 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -172,14 +191,9 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5))
-                                    .addComponent(jCheckBoxEstado)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jCheckBoxEstado)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
+                        .addGap(199, 199, 199)
                         .addComponent(jLabel7)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -295,7 +309,7 @@ public class VistaNuevoAlumno extends javax.swing.JInternalFrame {
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
-        menu.sesionAlumno(user);
+        menu.sesionDocente(user);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
