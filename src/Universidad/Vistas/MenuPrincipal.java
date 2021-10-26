@@ -6,18 +6,19 @@
 package Universidad.Vistas;
 
 import Universidad.Modelo.Conexion;
+import Universidad.Control.*;
 import Universidad.Modelo.Usuario;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-/**
- *
- * @author EL MEGAS
- */
 public class MenuPrincipal extends javax.swing.JFrame {
     private static Usuario user = null;
     private Conexion conexion;
-
+    private AlumnoData alumnoData;
+    private InscripcionData inscripcionData;
+    private MateriaData materiaData;
+    private UsuarioData usuarioData;
+    
     /**
      * Creates new form MenuPrincipal
      */
@@ -28,11 +29,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         try {
             conexion = new Conexion();
-        
+            
             this.iniciarSesion(user);
         } catch (ClassNotFoundException ex) {
             System.out.println("No se pudo crear conexion");
         }
+        alumnoData = new AlumnoData(conexion);
+        inscripcionData = new InscripcionData(conexion);
+        materiaData = new MateriaData(conexion);
+        usuarioData = new UsuarioData(conexion);
     }
     
     public MenuPrincipal(Usuario user) {
@@ -44,7 +49,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             System.out.println("No se pudo crear conexion");
         }
         
-        VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(user);
+        VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
             
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vistaMenuAlumno);
@@ -61,22 +66,56 @@ public class MenuPrincipal extends javax.swing.JFrame {
         subVentana.setVisible(true);
     }
     
-    public static void setIngreso(Usuario user){
+    public void setIngreso(Usuario user){
         MenuPrincipal.user = user;
+        switch(user.getRolUsuario()){
+        
+            case 1:
+                System.out.println("Ingreso Admin exitoso");
+                this.sesionAdmin(user);
+                break;
+            case 2:
+                System.out.println("Ingreso Docente exitoso");
+                this.sesionDocente(user);
+                break;
+            case 3:
+                System.out.println("Ingreso Alumno exitoso");
+                this.sesionAlumno(user);
+                break;
+        }
     }
     
     public Usuario getUser(){
         return MenuPrincipal.user;
     }
+    public void sesionAdmin(Usuario usuario){
+        VistaMenuAdmin vistaMenuAdmin = new VistaMenuAdmin(usuario);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaMenuAdmin);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaMenuAdmin);
+
+        vistaMenuAdmin.setVisible(true);
+    }
     
     public void sesionAlumno(Usuario usuario){
-        VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(usuario);
+        VistaMenuAlumno vistaMenuAlumno = new VistaMenuAlumno(this, usuario, alumnoData, materiaData, inscripcionData, usuarioData);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vistaMenuAlumno);
         jDesktopPane.repaint();
         jDesktopPane.add(vistaMenuAlumno);
 
         vistaMenuAlumno.setVisible(true);
+    }
+    
+    public void verInscripcionAlumno(){
+        VistaInscripcionAlumno vistaInscripcionAlumno = new VistaInscripcionAlumno(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaInscripcionAlumno);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaInscripcionAlumno);
+
+        vistaInscripcionAlumno.setVisible(true);
     }
     
     public void sesionDocente(Usuario usuario){
@@ -90,7 +129,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     
     public void iniciarSesion(Usuario user){
-        VistaInicio vistaInicio = new VistaInicio(conexion);
+        VistaInicio vistaInicio = new VistaInicio(conexion, this);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vistaInicio);
         jDesktopPane.repaint();
@@ -109,19 +148,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jDesktopPane = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItemNA = new javax.swing.JMenuItem();
-        jMenuItemBA = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItemNM = new javax.swing.JMenuItem();
-        jMenuItemBM = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItemNI = new javax.swing.JMenuItem();
-        jMenuItemBI = new javax.swing.JMenuItem();
-        jMenuItemCS = new javax.swing.JMenuItem();
+        jMenuItemSesion = new javax.swing.JMenu();
+        jMenuItemCambiarSesion = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -135,80 +166,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
         jDesktopPaneLayout.setHorizontalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 635, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Sesión");
-
-        jMenu3.setText("Alumno");
-
-        jMenuItemNA.setText("Nuevo alumno");
-        jMenuItemNA.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSesion.setText("Sesión");
+        jMenuItemSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemNAActionPerformed(evt);
+                jMenuItemSesionActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItemNA);
 
-        jMenuItemBA.setText("Buscar Alumnos");
-        jMenuItemBA.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCambiarSesion.setText("Cambiar Sesión");
+        jMenuItemCambiarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemBAActionPerformed(evt);
+                jMenuItemCambiarSesionActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItemBA);
+        jMenuItemSesion.add(jMenuItemCambiarSesion);
 
-        jMenu1.add(jMenu3);
-
-        jMenu4.setText("Materia");
-
-        jMenuItemNM.setText("Nueva Materia");
-        jMenuItemNM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemNMActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItemNM);
-
-        jMenuItemBM.setText("Buscar Materias");
-        jMenu4.add(jMenuItemBM);
-
-        jMenu1.add(jMenu4);
-
-        jMenu5.setText("Inscripción");
-
-        jMenuItemNI.setText("Nueva Inscripción");
-        jMenuItemNI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemNIActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItemNI);
-
-        jMenuItemBI.setText("Buscar Inscripciones");
-        jMenu5.add(jMenuItemBI);
-
-        jMenu1.add(jMenu5);
-
-        jMenuItemCS.setText("Cambiar Sesión");
-        jMenuItemCS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemCSActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItemCS);
-
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuItemSesion);
 
         jMenuSalir.setText("Salir");
         jMenuBar1.add(jMenuSalir);
@@ -219,54 +207,29 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemNAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNAActionPerformed
+    private void jMenuItemSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSesionActionPerformed
         // TODO add your handling code here:
-        
-        if (!"Admin".equals(user.getRolUsuario())){
-            jMenuItemNA.setEnabled(true);
-        }
-    }//GEN-LAST:event_jMenuItemNAActionPerformed
+    }//GEN-LAST:event_jMenuItemSesionActionPerformed
 
-    private void jMenuItemNMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNMActionPerformed
-        // TODO add your handling code here:
-        
-        if (!"Admin".equals(user.getRolUsuario())){
-            jMenuItemNM.setEnabled(true);
-        }
-    }//GEN-LAST:event_jMenuItemNMActionPerformed
-
-    private void jMenuItemCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCSActionPerformed
+    private void jMenuItemCambiarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCambiarSesionActionPerformed
         // TODO add your handling code here:
         
         user = null;
         
         this.iniciarSesion(user);
-    }//GEN-LAST:event_jMenuItemCSActionPerformed
-
-    private void jMenuItemBAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemBAActionPerformed
-
-    private void jMenuItemNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNIActionPerformed
-        // TODO add your handling code here:
-        if ("Alumno".equals(user.getRolUsuario())){
-            jMenuItemNM.setEnabled(true);
-        }
-    }//GEN-LAST:event_jMenuItemNIActionPerformed
+    }//GEN-LAST:event_jMenuItemCambiarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -306,18 +269,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItemBA;
-    private javax.swing.JMenuItem jMenuItemBI;
-    private javax.swing.JMenuItem jMenuItemBM;
-    private javax.swing.JMenuItem jMenuItemCS;
-    private javax.swing.JMenuItem jMenuItemNA;
-    private javax.swing.JMenuItem jMenuItemNI;
-    private javax.swing.JMenuItem jMenuItemNM;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemCambiarSesion;
+    private javax.swing.JMenu jMenuItemSesion;
     private javax.swing.JMenu jMenuSalir;
     // End of variables declaration//GEN-END:variables
 }

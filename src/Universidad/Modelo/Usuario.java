@@ -5,20 +5,20 @@ public class Usuario {
     private int idUsuario;
     private String nombreUsuario;
     private String passwordUsuario;
-    private String rolUsuario;
+    private int rolUsuario;
     private boolean activo;
     
     public Usuario() {
     }
 
-    public Usuario(String nombreUsuario, String passwordUsuario, String rolUsuario, boolean activo) {
+    public Usuario(String nombreUsuario, String passwordUsuario, int rolUsuario, boolean activo) {
         this.nombreUsuario = nombreUsuario;
         this.passwordUsuario = passwordUsuario;
         this.rolUsuario = rolUsuario;
         this.activo = activo;
     }
     
-    public Usuario(int id, String nombreUsuario, String passwordUsuario, String rolUsuario, boolean activo) {
+    public Usuario(int id, String nombreUsuario, String passwordUsuario, int rolUsuario, boolean activo) {
         this.idUsuario = id;
         this.nombreUsuario = nombreUsuario;
         this.passwordUsuario = passwordUsuario;
@@ -38,7 +38,7 @@ public class Usuario {
         return passwordUsuario;
     }
 
-    public String getRolUsuario() {
+    public int getRolUsuario() {
         return rolUsuario;
     }
     
@@ -63,7 +63,7 @@ public class Usuario {
         this.passwordUsuario = passwordUsuario;
     }
 
-    public void setRolUsuario(String rolUsuario) {
+    public void setRolUsuario(int rolUsuario) {
         this.rolUsuario = rolUsuario;
     }
     

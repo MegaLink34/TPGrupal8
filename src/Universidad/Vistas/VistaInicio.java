@@ -21,15 +21,20 @@ import javax.swing.JOptionPane;
 public class VistaInicio extends javax.swing.JInternalFrame {
     private UsuarioData usuarioData;
     private Conexion conexion;
+    private MenuPrincipal menu;
     
     /**
      * Creates new form VistaInicio
      */
-    public VistaInicio(Conexion conexion) {
+    public VistaInicio(Conexion conexion, MenuPrincipal menu) {
         initComponents();
         
         this.conexion = conexion;
+        this.menu = menu;
+        System.out.println(conexion);
+
         usuarioData = new UsuarioData(conexion);
+        System.out.println(usuarioData);
     }
 
     /**
@@ -176,6 +181,9 @@ public class VistaInicio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIngresarActionPerformed
+        
+        System.out.println("asd");
+        
         String usuario = jTextFieldUsuario.getText();
         String pass = jPasswordFieldContraseña.getText();
         Usuario user = null;
@@ -183,17 +191,18 @@ public class VistaInicio extends javax.swing.JInternalFrame {
         user = usuarioData.buscarUsuario(usuario, pass);
         
         if (user != null) {
-            System.out.println("Ingreso exitoso");
-            VistaInicio.verificarSesion(user);
+            System.out.println("Ingreso exitoso de Usuario");
+            this.verificarSesion(user);
             
             dispose();
+            
         } else {
             JOptionPane.showMessageDialog(this, "Usuario no encontrado");
         }
     }//GEN-LAST:event_jButtonIngresarActionPerformed
 
-    public static void verificarSesion(Usuario user){
-        MenuPrincipal.setIngreso(user);
+    public void verificarSesion(Usuario user){
+        menu.setIngreso(user);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
