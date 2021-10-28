@@ -3,6 +3,7 @@ package Universidad.Control;
 import Universidad.Modelo.*;
 import java.sql.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class MateriaData {
     private Connection conexion;
@@ -198,5 +199,21 @@ public class MateriaData {
         } catch (SQLException ex) {
             System.out.println("Error al desactivar");
         }
+    }
+    
+    public boolean materiaExiste(int id){
+        boolean ret = false;
+        String sql = "SELECT * FROM `materia` WHERE `idMateria`=?";
+        try{
+            PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                ret = true;
+            }
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al buscar la materia en la base de datos");
+        }
+    return ret;
     }
 }

@@ -23,7 +23,7 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaInscripcion
      */
-    public VistaInscripcion(AlumnoData ad,MateriaData md,InscripcionData insDat) {
+    public VistaInscripcion(AlumnoData ad, MateriaData md, InscripcionData insDat){
         initComponents();
         this.ad = ad;
         this.md = md;

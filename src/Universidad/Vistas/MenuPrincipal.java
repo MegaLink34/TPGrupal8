@@ -167,6 +167,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         vistaVerModMateria.setVisible(true);
      }
+     
+     public void verVistaVerAlumnos(){
+        VistaVerAlumnos VistaVerAlumnos = new VistaVerAlumnos(this, user, usuarioData, alumnoData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(VistaVerAlumnos);
+        jDesktopPane.repaint();
+        jDesktopPane.add(VistaVerAlumnos);
+
+        VistaVerAlumnos.setVisible(true);
+     }
+     
+     public void verVistaVerMaterias(){
+        VistaVerMaterias VistaVerMaterias = new VistaVerMaterias(this, user, usuarioData, materiaData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(VistaVerMaterias);
+        jDesktopPane.repaint();
+        jDesktopPane.add(VistaVerMaterias);
+
+        VistaVerMaterias.setVisible(true);
+     }
     
     public void sesionDocente(Usuario usuario){
         VistaMenuDocente vistaMenuDocente = new VistaMenuDocente(this, user, alumnoData, materiaData, inscripcionData, usuarioData);

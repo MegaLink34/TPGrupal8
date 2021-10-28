@@ -47,6 +47,7 @@ public class VistaMenuAlumno extends javax.swing.JInternalFrame {
         jButtonInscribirseAMateria = new javax.swing.JButton();
         jButtonBajaInscripcionAlumno = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jButtonVerMaterias = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 153));
 
@@ -84,6 +85,16 @@ public class VistaMenuAlumno extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonVerMaterias.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonVerMaterias.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonVerMaterias.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVerMaterias.setText("Ver materias");
+        jButtonVerMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerMateriasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,16 +106,18 @@ public class VistaMenuAlumno extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jButtonInscribirseAMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
                             .addComponent(jButtonBajaInscripcionAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(183, 183, 183)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVerMaterias, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonInscribirseAMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,11 +127,13 @@ public class VistaMenuAlumno extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonVerMaterias)
+                .addGap(39, 39, 39)
                 .addComponent(jButtonInscribirseAMateria)
-                .addGap(38, 38, 38)
+                .addGap(55, 55, 55)
                 .addComponent(jButtonBajaInscripcionAlumno)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
                 .addComponent(jButtonSalir)
                 .addGap(63, 63, 63))
         );
@@ -142,11 +157,17 @@ public class VistaMenuAlumno extends javax.swing.JInternalFrame {
         menu.iniciarSesion(user);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void jButtonVerMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerMateriasActionPerformed
+        // TODO add your handling code here:
+        menu.verVistaVerMaterias();
+    }//GEN-LAST:event_jButtonVerMateriasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBajaInscripcionAlumno;
     private javax.swing.JButton jButtonInscribirseAMateria;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonVerMaterias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

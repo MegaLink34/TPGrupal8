@@ -5,16 +5,32 @@
  */
 package Universidad.Vistas;
 
+import Universidad.Control.AlumnoData;
+import Universidad.Control.UsuarioData;
+import Universidad.Modelo.Alumno;
+import Universidad.Modelo.Usuario;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mauri
  */
 public class VistaVerAlumnos extends javax.swing.JInternalFrame {
+    AlumnoData ad;
+    private DefaultTableModel dtm;
+    private Usuario user;
+    private UsuarioData udat;
+    private MenuPrincipal menu;
     /**
      * Creates new form VistaVerAlumnos
      */
-    public VistaVerAlumnos() {
+    public VistaVerAlumnos(MenuPrincipal menu, Usuario user, UsuarioData uDat, AlumnoData ad) {
         initComponents();
+        mostrarAlumnos(ad);
+        this.user = user;
+        this.udat = udat;
+        this.menu = menu;
     }
 
     /**
@@ -27,20 +43,20 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jtLegajo = new javax.swing.JTextField();
+        jTextLegajo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtAlumnos = new javax.swing.JTable();
+        jTableAlumnos = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
-        cbVerInactivos = new javax.swing.JCheckBox();
+        CheckBoxVerInactivos = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jtFecha = new javax.swing.JTextField();
-        jtNombre = new javax.swing.JTextField();
-        jtApellido = new javax.swing.JTextField();
+        jTextFecha = new javax.swing.JTextField();
+        jTextNombre = new javax.swing.JTextField();
+        jTextApellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jtEstado = new javax.swing.JTextField();
+        jTextEstado = new javax.swing.JTextField();
         jButtonActualizar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jInternalFrame1 = new javax.swing.JInternalFrame();
@@ -66,13 +82,13 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        jtLegajo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextLegajo.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel1.setText("Número de legajo");
 
-        jtAlumnos.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
-        jtAlumnos.setModel(new javax.swing.table.DefaultTableModel(
+        jTableAlumnos.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 14)); // NOI18N
+        jTableAlumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,11 +104,11 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
-        jtAlumnos.setEnabled(false);
-        jScrollPane1.setViewportView(jtAlumnos);
+        jTableAlumnos.setEnabled(false);
+        jScrollPane1.setViewportView(jTableAlumnos);
 
-        cbVerInactivos.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        cbVerInactivos.setText("Incluir alumnos inactivos.");
+        CheckBoxVerInactivos.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        CheckBoxVerInactivos.setText("Incluir alumnos inactivos.");
 
         jLabel2.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel2.setText("Apellido/s");
@@ -103,20 +119,20 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel4.setText("Fecha de nacimiento");
 
-        jtFecha.setEditable(false);
-        jtFecha.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextFecha.setEditable(false);
+        jTextFecha.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jtNombre.setEditable(false);
-        jtNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextNombre.setEditable(false);
+        jTextNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jtApellido.setEditable(false);
-        jtApellido.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextApellido.setEditable(false);
+        jTextApellido.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel5.setText("Estado");
 
-        jtEstado.setEditable(false);
-        jtEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextEstado.setEditable(false);
+        jTextEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jButtonActualizar.setBackground(new java.awt.Color(153, 153, 153));
         jButtonActualizar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -138,11 +154,11 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(34, 34, 34)
-                        .addComponent(jtLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBuscar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbVerInactivos)
+                        .addComponent(CheckBoxVerInactivos)
                         .addGap(148, 148, 148)
                         .addComponent(jButtonActualizar))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -160,10 +176,10 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel5)
                                 .addGap(116, 116, 116)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-                            .addComponent(jtNombre)
-                            .addComponent(jtApellido)
-                            .addComponent(jtFecha, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jTextEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+                            .addComponent(jTextNombre)
+                            .addComponent(jTextApellido)
+                            .addComponent(jTextFecha, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,30 +197,30 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbVerInactivos)
+                    .addComponent(CheckBoxVerInactivos)
                     .addComponent(jButtonActualizar))
                 .addGap(9, 9, 9)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextLegajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)))
         );
 
@@ -420,17 +436,75 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-       
+       int legajo = 0;
+        jTextFecha.setText("");
+        jTextApellido.setText("");
+        jTextNombre.setText("");
+        jTextEstado.setText("");
+        try{
+            legajo = Integer.valueOf(jTextLegajo.getText());
+            if(legajo<=0)
+            JOptionPane.showMessageDialog(null,"El campo Legajo no puede contener un numero negativo o ser igual a cero");
+        else {
+            for(Alumno alm : ad.obtenerAlumnos()){
+                if(alm.getLegajo()== legajo){
+                    jTextFecha.setText(alm.getFechaNac()+"");
+                    jTextNombre.setText(alm.getNombre());
+                    jTextApellido.setText(alm.getApellido());
+                    if(alm.isActivo())
+                        jTextEstado.setText("Activo");
+                    else
+                        jTextEstado.setText("Inactivo");
+                }
+            }
+            if (jTextFecha.getText().equals("") && jTextNombre.getText().equals("") && jTextApellido.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"El Legajo que has buscado no existe. Prueba otro diferente");
+            }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"El campo Legajo solo admite caracteres numéricos");
+        }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
-
+        mostrarAlumnos(ad);
     }//GEN-LAST:event_jbActualizarActionPerformed
 
-       
+    private void mostrarAlumnos(AlumnoData ad){
+        this.ad = ad;
+        dtm = (DefaultTableModel) jTableAlumnos.getModel();
+        dtm.setRowCount(0);
+        if (!CheckBoxVerInactivos.isSelected()){ 
+        for (Alumno a : ad.obtenerAlumnos()){
+                if(a.isActivo()){
+                String []row = new String[4];
+                row[0] = a.getLegajo()+"";
+                row[1] = a.getNombre();
+                row[2] = a.getApellido();
+                row[3]= "Activo";
+                dtm.addRow(row);
+                jTableAlumnos.setModel(dtm);
+                }
+                
+            }
+        } else { 
+            for (Alumno a : ad.obtenerAlumnos()){
+                String []row = new String[4];
+                row[0] = a.getLegajo()+"";
+                row[1] = a.getNombre();
+                row[2] = a.getApellido()+"";
+                if(a.isActivo())
+                    row[3]= "Activo";
+                else
+                    row[3]= "Inactivo";
+                dtm.addRow(row);
+                jTableAlumnos.setModel(dtm);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox cbVerInactivos;
+    private javax.swing.JCheckBox CheckBoxVerInactivos;
     private javax.swing.JCheckBox cbVerInactivos1;
     private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonBuscar;
@@ -453,19 +527,19 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JTable jTableAlumnos;
+    private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextEstado;
+    private javax.swing.JTextField jTextFecha;
+    private javax.swing.JTextField jTextLegajo;
+    private javax.swing.JTextField jTextNombre;
     private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbBuscar;
-    private javax.swing.JTable jtAlumnos;
     private javax.swing.JTable jtAlumnos1;
-    private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtApellido1;
-    private javax.swing.JTextField jtEstado;
     private javax.swing.JTextField jtEstado1;
-    private javax.swing.JTextField jtFecha;
     private javax.swing.JTextField jtFecha1;
-    private javax.swing.JTextField jtLegajo;
     private javax.swing.JTextField jtLegajo1;
-    private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtNombre1;
     // End of variables declaration//GEN-END:variables
 }

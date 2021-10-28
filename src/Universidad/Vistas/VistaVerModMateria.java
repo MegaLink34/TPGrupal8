@@ -27,7 +27,7 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
      * Creates new form VistaNuevaMateria
      */
     
-    public VistaVerModMateria(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat) {
+    public VistaVerModMateria(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat){
         this.insDat = insDat;
         this.md = md;
         this.user = user;

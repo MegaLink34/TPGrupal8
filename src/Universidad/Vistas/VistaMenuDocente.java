@@ -52,6 +52,7 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
         jButtonVerModMateria = new javax.swing.JButton();
         jButtonBajaMateria = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jButtonVerAlumnos = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 0, 153));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -130,6 +131,16 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
             }
         });
 
+        jButtonVerAlumnos.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonVerAlumnos.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonVerAlumnos.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVerAlumnos.setText("Ver alumnos");
+        jButtonVerAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonVerAlumnosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,14 +160,16 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
                             .addComponent(jButtonNuevoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBajaAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVerAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonBajaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButtonVerModMateria))))
                 .addContainerGap(102, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(188, 188, 188))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,9 +192,11 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
                 .addComponent(jButtonVerModMateria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonBajaMateria)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonVerAlumnos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jButtonSalir)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -217,6 +232,11 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
         menu.verVerModMateria();
     }//GEN-LAST:event_jButtonVerModMateriaActionPerformed
 
+    private void jButtonVerAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerAlumnosActionPerformed
+        // TODO add your handling code here:
+        menu.verVistaVerAlumnos();
+    }//GEN-LAST:event_jButtonVerAlumnosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBajaAlumno;
@@ -226,6 +246,7 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButtonNuevoAlumno;
     private javax.swing.JButton jButtonRegCalificacion;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonVerAlumnos;
     private javax.swing.JButton jButtonVerModMateria;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator3;
