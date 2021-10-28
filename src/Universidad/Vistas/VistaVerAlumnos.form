@@ -67,12 +67,12 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                          <Component id="jtLegajo" min="-2" pref="196" max="-2" attributes="0"/>
+                          <Component id="jTextLegajo" min="-2" pref="196" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jButtonBuscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Component id="cbVerInactivos" min="-2" max="-2" attributes="0"/>
+                          <Component id="CheckBoxVerInactivos" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
                           <Component id="jButtonActualizar" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -97,10 +97,10 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jtEstado" pref="298" max="32767" attributes="0"/>
-                              <Component id="jtNombre" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jtApellido" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jtFecha" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jTextEstado" pref="298" max="32767" attributes="0"/>
+                              <Component id="jTextNombre" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextApellido" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jTextFecha" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -127,35 +127,35 @@
                   <Component id="jScrollPane1" min="-2" pref="113" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cbVerInactivos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CheckBoxVerInactivos" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonActualizar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtLegajo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextLegajo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonBuscar" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" pref="30" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextEstado" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -163,7 +163,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jtLegajo">
+        <Component class="javax.swing.JTextField" name="jTextLegajo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Malgun Gothic Semilight" size="16" style="0"/>
@@ -185,7 +185,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jtAlumnos">
+            <Component class="javax.swing.JTable" name="jTableAlumnos">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Malgun Gothic Semilight" size="14" style="0"/>
@@ -232,7 +232,7 @@
         </Container>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
         </Component>
-        <Component class="javax.swing.JCheckBox" name="cbVerInactivos">
+        <Component class="javax.swing.JCheckBox" name="CheckBoxVerInactivos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Malgun Gothic Semilight" size="16" style="0"/>
@@ -264,7 +264,7 @@
             <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtFecha">
+        <Component class="javax.swing.JTextField" name="jTextFecha">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -272,7 +272,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtNombre">
+        <Component class="javax.swing.JTextField" name="jTextNombre">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -280,7 +280,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtApellido">
+        <Component class="javax.swing.JTextField" name="jTextApellido">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -296,7 +296,7 @@
             <Property name="text" type="java.lang.String" value="Estado"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtEstado">
+        <Component class="javax.swing.JTextField" name="jTextEstado">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

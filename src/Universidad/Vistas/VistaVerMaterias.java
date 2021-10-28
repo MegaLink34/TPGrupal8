@@ -5,17 +5,36 @@
  */
 package Universidad.Vistas;
 
+import Universidad.Control.MateriaData;
+import Universidad.Modelo.Materia;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mauri
  */
 public class VistaVerMaterias extends javax.swing.JInternalFrame {
-
+    MateriaData md;
+    private DefaultTableModel dtm;
     /**
      * Creates new form VistaVerMaterias
      */
-    public VistaVerMaterias() {
+    public VistaVerMaterias(MateriaData md) {
         initComponents();
+        this.md = md;
+        dtm = (DefaultTableModel) jtMaterias.getModel();
+        for (Materia m : md.obtenerMaterias()){
+            if(m.isActivo()){
+                String []row = new String[4];
+                row[0] = m.getIdMateria()+"";
+                row[1] = m.getNombre();
+                row[2] = m.getAnio()+"º";
+                row[3]= "Activa";
+                dtm.addRow(row);
+                jtMaterias.setModel(dtm);
+            }
+        }
     }
 
     /**
@@ -104,16 +123,31 @@ public class VistaVerMaterias extends javax.swing.JInternalFrame {
         jButtonActualizar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonActualizar.setText("Actualizar");
+        jButtonActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActualizarActionPerformed(evt);
+            }
+        });
 
         jButtonLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         jButtonLimpiar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setBackground(new java.awt.Color(153, 153, 153));
         jButtonBuscar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,7 +216,6 @@ public class VistaVerMaterias extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -214,6 +247,72 @@ public class VistaVerMaterias extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        int id = 0;
+        try{
+            id = Integer.valueOf(jtId.getText());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"El campo ID solo admite caracteres numéricos mayores a cero");
+        }
+        if(id>0){
+            Materia m = new Materia();
+            if(md.materiaExiste(id)){
+                m = md.buscarMateria(id);
+                jtAnio.setText(m.getAnio()+"");
+                jtNombre.setText(m.getNombre());
+                if(m.isActivo())
+                    jtEstado.setText("Activa");
+                else
+                    jtEstado.setText("Inactiva");
+            }
+            else
+                JOptionPane.showMessageDialog(null, "El valor ingresado no pertenece a una materia cargada");
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
+        // TODO add your handling code here:
+        int x = jtMaterias.getRowCount();
+        dtm = (DefaultTableModel) jtMaterias.getModel();
+        for (int i = 0;x>i; i++)
+                dtm.removeRow(0);
+        jtMaterias.setModel(dtm);
+        if(!cbVerInactivos.isSelected()){
+            for (Materia m : md.obtenerMaterias()){
+                if(m.isActivo()){
+                    String []row = new String[4];
+                    row[0] = m.getIdMateria()+"";
+                    row[1] = m.getNombre();
+                    row[2] = m.getAnio()+"º";
+                    row[3]= "Activa";
+                    dtm.addRow(row);
+                    jtMaterias.setModel(dtm);
+                }
+            }
+        }else
+            for (Materia m : md.obtenerMaterias()){
+                String []row = new String[4];
+                row[0] = m.getIdMateria()+"";
+                row[1] = m.getNombre();
+                row[2] = m.getAnio()+" º";
+                if(m.isActivo())
+                    row[3] = "Activa";
+                else
+                    row[3] = "Inactiva";
+                dtm.addRow(row);
+                jtMaterias.setModel(dtm);
+            }
+    }//GEN-LAST:event_jButtonActualizarActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        jtAnio.setText("");
+        jtId.setText("");
+        jtNombre.setText("");
+        jtEstado.setText("");
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

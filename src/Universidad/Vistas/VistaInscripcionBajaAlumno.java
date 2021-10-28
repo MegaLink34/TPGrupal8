@@ -24,7 +24,7 @@ public class VistaInscripcionBajaAlumno extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaInscripcion
      */
-    public VistaInscripcionBajaAlumno(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat) {
+    public VistaInscripcionBajaAlumno(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat){
         initComponents();
         this.ad = ad;
         this.md = md;

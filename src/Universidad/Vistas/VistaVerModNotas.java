@@ -28,7 +28,7 @@ public class VistaVerModNotas extends javax.swing.JInternalFrame {
     /**
      * Creates new form VistaVerInscriptos
      */
-    public VistaVerModNotas(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat) {
+    public VistaVerModNotas(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat){
         initComponents();
         this.insDat = insDat;
         this.md = md;
