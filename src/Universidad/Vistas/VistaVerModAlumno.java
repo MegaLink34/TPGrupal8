@@ -29,7 +29,7 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
     private InscripcionData insDat;
     private AlumnoData ad;
     private MateriaData md;
-    private UsuarioData udat;
+    private UsuarioData uDat;
     private MenuPrincipal menu;
     private int id;
     
@@ -41,7 +41,7 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
         this.md = md;
         this.user = user;
         this.ad = ad;        
-        this.udat = udat;
+        this.uDat = uDat;
         this.menu = menu;
         initComponents();
     }

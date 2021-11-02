@@ -30,7 +30,7 @@ public class AlumnoData {
                 + "fechNac, activo) VALUES (?,?,?,?,?)";
         
         PreparedStatement prepStat;
-        
+        System.out.println("guardar alumno: " + alumno);
         try {
             prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
             

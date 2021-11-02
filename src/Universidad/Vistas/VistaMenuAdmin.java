@@ -12,14 +12,15 @@ import Universidad.Modelo.Usuario;
  */
 public class VistaMenuAdmin extends javax.swing.JInternalFrame {
     private Usuario user;
-
+    private MenuPrincipal menu;
     /**
      * Creates new form VistaMunuAlumno
      */
-    public VistaMenuAdmin(Usuario user) {
+    public VistaMenuAdmin(MenuPrincipal menu, Usuario user) {
         initComponents();
         
         this.user = user;
+        this.menu = menu;
     }
 
     /**
@@ -34,10 +35,9 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
         jButtonSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton4 = new javax.swing.JButton();
+        jButtonVerModUsuario = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButtonSalir1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
 
         jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
         jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -50,13 +50,13 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bienvenido Admin");
 
-        jButton4.setBackground(new java.awt.Color(153, 153, 153));
-        jButton4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Nuevo Usuario");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVerModUsuario.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonVerModUsuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonVerModUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonVerModUsuario.setText("Agregar/Modificar Usuario");
+        jButtonVerModUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButtonVerModUsuarioActionPerformed(evt);
             }
         });
 
@@ -74,14 +74,9 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
         jButtonSalir1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonSalir1.setForeground(new java.awt.Color(255, 255, 255));
         jButtonSalir1.setText("Salir");
-
-        jButton6.setBackground(new java.awt.Color(153, 153, 153));
-        jButton6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Modificar un Usuario");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                jButtonSalir1ActionPerformed(evt);
             }
         });
 
@@ -96,17 +91,16 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(183, 183, 183)
-                        .addComponent(jButtonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(jButtonVerModUsuario)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,12 +111,10 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(jButton4)
+                .addComponent(jButtonVerModUsuario)
                 .addGap(18, 18, 18)
                 .addComponent(jButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addComponent(jButtonSalir1)
                 .addGap(63, 63, 63))
         );
@@ -130,25 +122,26 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButtonVerModUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerModUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+        menu.verVerModUsuario();
+    }//GEN-LAST:event_jButtonVerModUsuarioActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButtonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalir1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        menu.iniciarSesion(user);
+    }//GEN-LAST:event_jButtonSalir1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonSalir1;
+    private javax.swing.JButton jButtonVerModUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables

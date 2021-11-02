@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UsuarioData {
     private Connection conexion;
@@ -38,7 +40,7 @@ public class UsuarioData {
             
             prepStat.executeUpdate();
             ResultSet resultSet = prepStat.getGeneratedKeys();
-            
+
             if (resultSet.next()){
                 usuario.setIdUsuario(resultSet.getInt("idUsuario"));
             }
@@ -46,7 +48,7 @@ public class UsuarioData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al insertar");
+            System.out.println("Error al insertar" + ex);
         }
     }
     
@@ -66,7 +68,7 @@ public class UsuarioData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al activar");
+            System.out.println("Error al activar usuario");
         }
     }
     
@@ -86,30 +88,35 @@ public class UsuarioData {
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al desactivar");
+            System.out.println("Error al desactivar usuario");
         }
     }
     
     public void actualizarUsuario(Usuario usuario) {
         String comandoSql = "UPDATE usuario " +
-                "SET nombreUsuario=?, passwordUsuario=?, rolUsuario=? WHERE idUsuario=?";
+                "SET nombreUsuario=?, passwordUsuario=?, rolUsuario=?, activo=? WHERE idUsuario=?";
         PreparedStatement prepStat;
         
         try {
             prepStat = conexion.prepareStatement(comandoSql);
             
             
-            prepStat.setString(2, usuario.getNombreUsuario());
-            prepStat.setString(3, usuario.getPasswordUsuario());
-            prepStat.setInt(1, usuario.getRolUsuario());
-            prepStat.setInt(6, usuario.getIdUsuario());
+            prepStat.setString(1, usuario.getNombreUsuario());
+            prepStat.setString(2, usuario.getPasswordUsuario());
+            prepStat.setInt(3, usuario.getRolUsuario());
+            if(usuario.isActivoUsuario()){
+                prepStat.setInt(3, 1);
+            }else{
+                prepStat.setInt(3, 0);
+            }
+            prepStat.setInt(4, usuario.getIdUsuario());
             
             prepStat.executeUpdate();
             
             prepStat.close();
             
         } catch (SQLException ex) {
-            System.out.println("Error al modificar");
+            System.out.println("Error al modificar usuario");
         }
     }
     
@@ -135,7 +142,7 @@ public class UsuarioData {
             }
             
         } catch (SQLException ex) {
-            System.out.println("Error al buscar");
+            System.out.println("Error al buscar usuario");
         }
         
         return usuario;
@@ -166,7 +173,37 @@ public class UsuarioData {
             }
             
         } catch (SQLException ex) {
-            System.out.println("Error al buscar");
+            System.out.println("Error al buscar usuario");
+        }
+        
+        return usuario;
+    }
+    
+    public Usuario buscarUsuario(String user){
+        String comandoSql = "SELECT * FROM usuario WHERE nombreUsuario=?";
+        Usuario usuario = null;
+        System.out.println("sql" + comandoSql);
+        
+        try {
+            System.out.println(conexion.prepareStatement(comandoSql));
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setString(1, user);
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            if (resultSet.next()){
+                usuario = new Usuario();
+                
+                usuario.setIdUsuario(resultSet.getInt("idUsuario"));
+                usuario.setNombreUsuario(resultSet.getString("nombreUsuario"));
+                usuario.setPasswordUsuario(resultSet.getString("passwordUsuario"));
+                usuario.setRolUsuario(resultSet.getInt("rolUsuario"));
+                usuario.setActivoUsuario(resultSet.getBoolean("activo"));
+                
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al buscar usuario");
         }
         
         return usuario;
@@ -197,7 +234,7 @@ public class UsuarioData {
             }
             
         } catch (SQLException ex) {
-            System.out.println("Error al buscar");
+            System.out.println("Error al buscar usuario");
         }
         
         return usuarios;
@@ -228,7 +265,7 @@ public class UsuarioData {
             }
             
         } catch (SQLException ex) {
-            System.out.println("Error al buscar");
+            System.out.println("Error al buscar usuario");
         }
         
         return usuarios;

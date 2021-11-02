@@ -89,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         return MenuPrincipal.user;
     }
     public void sesionAdmin(Usuario usuario){
-        VistaMenuAdmin vistaMenuAdmin = new VistaMenuAdmin(usuario);
+        VistaMenuAdmin vistaMenuAdmin = new VistaMenuAdmin(this, usuario);
         jDesktopPane.removeAll();
         jDesktopPane.moveToFront(vistaMenuAdmin);
         jDesktopPane.repaint();
@@ -166,6 +166,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jDesktopPane.add(vistaVerModMateria);
 
         vistaVerModMateria.setVisible(true);
+     }
+     
+     public void verVerModUsuario(){
+        VistaVerModUsuario vistaVerModUsuario = new VistaVerModUsuario(this, user, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaVerModUsuario);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaVerModUsuario);
+
+        vistaVerModUsuario.setVisible(true);
      }
      
      public void verVistaVerAlumnos(){
