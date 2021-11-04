@@ -288,8 +288,7 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
                         uDat.guardarUsuario(modUser);
                         break;
                     case 2:
-                        modUser = new Usuario(jTextNombre.getText(), jPasswordField.getText(), 3, jCheckBoxEstado.isSelected());
-                        uDat.guardarUsuario(modUser);
+                        JOptionPane.showMessageDialog(this,"Para ingresar un usuario alumno conecte con una cuenta docente.");
                         break;
                 }
             }
@@ -310,6 +309,7 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this,"El nombre de usuario se encuentra disponible.");
                 jTextNombre.setEnabled(false);
                 jButtonGuardar.setEnabled(true);
+                jButtonGuardar.setText("Guardar");
             }else{
                 JOptionPane.showMessageDialog(this,"Usuario ya ingresado.");
                 jButtonResetPass.setEnabled(true);
