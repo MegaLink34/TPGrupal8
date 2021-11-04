@@ -158,6 +158,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vistaVerModAlumno.setVisible(true);
      }
      
+     public void verBorrarUsuario(){
+        VistaBorrarUsuario vistaBorrarUsuario = new VistaBorrarUsuario(this, user, usuarioData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaBorrarUsuario);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaBorrarUsuario);
+
+        vistaBorrarUsuario.setVisible(true);
+     }
+     
      public void verVerModMateria(){
         VistaVerModMateria vistaVerModMateria = new VistaVerModMateria(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
         jDesktopPane.removeAll();

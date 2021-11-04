@@ -36,7 +36,7 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonVerModUsuario = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jButtonBajaUsuario = new javax.swing.JButton();
         jButtonSalir1 = new javax.swing.JButton();
 
         jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
@@ -60,13 +60,13 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(153, 153, 153));
-        jButton5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Dar de baja un Usuario");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBajaUsuario.setBackground(new java.awt.Color(153, 153, 153));
+        jButtonBajaUsuario.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonBajaUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonBajaUsuario.setText("Dar de baja un Usuario");
+        jButtonBajaUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                jButtonBajaUsuarioActionPerformed(evt);
             }
         });
 
@@ -94,7 +94,7 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
                         .addGap(104, 104, 104)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonBajaUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(183, 183, 183)
                         .addComponent(jButtonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -113,7 +113,7 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jButtonVerModUsuario)
                 .addGap(18, 18, 18)
-                .addComponent(jButton5)
+                .addComponent(jButtonBajaUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addComponent(jButtonSalir1)
                 .addGap(63, 63, 63))
@@ -127,9 +127,10 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
         menu.verVerModUsuario();
     }//GEN-LAST:event_jButtonVerModUsuarioActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtonBajaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        menu.verBorrarUsuario();
+    }//GEN-LAST:event_jButtonBajaUsuarioActionPerformed
 
     private void jButtonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalir1ActionPerformed
         // TODO add your handling code here:
@@ -138,7 +139,7 @@ public class VistaMenuAdmin extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonBajaUsuario;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonSalir1;
     private javax.swing.JButton jButtonVerModUsuario;

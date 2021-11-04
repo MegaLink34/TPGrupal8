@@ -154,7 +154,7 @@ public class UsuarioData {
         System.out.println("sql" + comandoSql);
         
         try {
-            System.out.println(conexion.prepareStatement(comandoSql));
+            
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             
             prepStat.setString(1, user);
@@ -185,7 +185,7 @@ public class UsuarioData {
         System.out.println("sql" + comandoSql);
         
         try {
-            System.out.println(conexion.prepareStatement(comandoSql));
+            
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             
             prepStat.setString(1, user);
@@ -272,12 +272,12 @@ public class UsuarioData {
     }
     
     public void borrarUsuario(int id){
-        String comandoSql = "DELETE * FROM usuario WHERE idUsuario=?";
+        String comandoSql = "DELETE FROM usuario WHERE idUsuario=?";
         try {
             PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
             
             prepStat.setInt(1, id);
-            
+            System.out.println("asd " + prepStat);
             prepStat.executeUpdate();
             
             prepStat.close();
