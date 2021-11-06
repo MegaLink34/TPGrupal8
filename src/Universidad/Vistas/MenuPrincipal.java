@@ -168,14 +168,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vistaBorrarUsuario.setVisible(true);
      }
      
-     public void verVerModMateria(){
-        VistaVerModMateria vistaVerModMateria = new VistaVerModMateria(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
+     public void verVistaVerModMateria(){
+        VistaVerModMateria VistaVerModMateria = new VistaVerModMateria(this, user, usuarioData, materiaData);
         jDesktopPane.removeAll();
-        jDesktopPane.moveToFront(vistaVerModMateria);
+        jDesktopPane.moveToFront(VistaVerModMateria);
         jDesktopPane.repaint();
-        jDesktopPane.add(vistaVerModMateria);
+        jDesktopPane.add(VistaVerModMateria);
 
-        vistaVerModMateria.setVisible(true);
+        VistaVerModMateria.setVisible(true);
      }
      
      public void verVerModUsuario(){
@@ -207,6 +207,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         VistaVerMaterias.setVisible(true);
      }
+     
+     
     
     public void sesionDocente(Usuario usuario){
         VistaMenuDocente vistaMenuDocente = new VistaMenuDocente(this, user, alumnoData, materiaData, inscripcionData, usuarioData);

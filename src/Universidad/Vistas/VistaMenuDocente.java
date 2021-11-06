@@ -120,6 +120,11 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
         jButtonBajaMateria.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonBajaMateria.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBajaMateria.setText("Dar de Baja Materia");
+        jButtonBajaMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBajaMateriaActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
         jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -229,13 +234,18 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
 
     private void jButtonVerModMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerModMateriaActionPerformed
         // TODO add your handling code here:
-        menu.verVerModMateria();
+        menu.verVistaVerModMateria();
     }//GEN-LAST:event_jButtonVerModMateriaActionPerformed
 
     private void jButtonVerAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerAlumnosActionPerformed
         // TODO add your handling code here:
         menu.verVistaVerAlumnos();
     }//GEN-LAST:event_jButtonVerAlumnosActionPerformed
+
+    private void jButtonBajaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaMateriaActionPerformed
+        // TODO add your handling code here:
+       ///////////////////////////////////////////// -> ACA VA UNA FUNCION <-
+    }//GEN-LAST:event_jButtonBajaMateriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

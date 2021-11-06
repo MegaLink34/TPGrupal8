@@ -216,4 +216,20 @@ public class MateriaData {
         }
     return ret;
     }
+    
+    public void modificarEstado(int id){
+        String sql = "UPDATE `materia` SET `activo`=? WHERE `idMateria`=?";
+        try {
+            PreparedStatement ps= conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            Materia m = this.buscarMateria(id);
+            ps.setBoolean(1,!m.isActivo());
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al modificar el estado de la materia en la base de datos.");
+        }
+    }
 }
+
+    

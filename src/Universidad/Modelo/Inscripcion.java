@@ -4,6 +4,7 @@ public class Inscripcion {
     private int idInscripcion;
     private Materia materia;
     private Alumno alumno;
+    private Usuario user;
     private double nota;
     private boolean activo;
     
@@ -33,6 +34,10 @@ public class Inscripcion {
 
     public Alumno getAlumno() {
         return alumno;
+    }
+
+    public Usuario getUser() {
+        return user;
     }
 
     public double getNota() {
@@ -67,6 +72,19 @@ public class Inscripcion {
     }
 
     public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
+    public Inscripcion(int idInscripcion, Materia materia, Alumno alumno, Usuario user, double nota, boolean activo) {
+        this.idInscripcion = idInscripcion;
+        this.materia = materia;
+        this.alumno = alumno;
+        this.user = user;
+        this.nota = nota;
         this.activo = activo;
     }
 }

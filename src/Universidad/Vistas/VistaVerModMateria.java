@@ -5,11 +5,11 @@
  */
 package Universidad.Vistas;
 
-import Universidad.Control.AlumnoData;
-import Universidad.Control.InscripcionData;
 import Universidad.Control.MateriaData;
 import Universidad.Control.UsuarioData;
+import Universidad.Modelo.Materia;
 import Universidad.Modelo.Usuario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,20 +18,16 @@ import Universidad.Modelo.Usuario;
 public class VistaVerModMateria extends javax.swing.JInternalFrame {
     
     private Usuario user;
-    private InscripcionData insDat;
-    private AlumnoData ad;
     private MateriaData md;
     private UsuarioData udat;
     private MenuPrincipal menu;
     /**
-     * Creates new form VistaNuevaMateria
+     * Creates new form VistaVerModMateria
      */
     
-    public VistaVerModMateria(MenuPrincipal menu, Usuario user, AlumnoData ad, MateriaData md, InscripcionData insDat, UsuarioData uDat){
-        this.insDat = insDat;
+    public VistaVerModMateria(MenuPrincipal menu, Usuario user, UsuarioData uDat, MateriaData md){
         this.md = md;
-        this.user = user;
-        this.ad = ad;        
+        this.user = user;     
         this.udat = udat;
         this.menu = menu;
         initComponents();
@@ -48,19 +44,20 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
 
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jtId = new javax.swing.JTextField();
-        jtNombre = new javax.swing.JTextField();
-        jtAnio = new javax.swing.JTextField();
+        jTextIdMateria = new javax.swing.JTextField();
+        jTextNombre = new javax.swing.JTextField();
+        jTextAnio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        cbEstado = new javax.swing.JCheckBox();
+        jCheckBoxEstado = new javax.swing.JCheckBox();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonLimpiar = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jButtonEditable = new javax.swing.JButton();
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -70,13 +67,18 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(640, 580));
 
-        jtId.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextIdMateria.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextIdMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextIdMateriaActionPerformed(evt);
+            }
+        });
 
-        jtNombre.setEditable(false);
-        jtNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextNombre.setEditable(false);
+        jTextNombre.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
-        jtAnio.setEditable(false);
-        jtAnio.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextAnio.setEditable(false);
+        jTextAnio.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel1.setText("ID de la Materia");
@@ -90,14 +92,19 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Malgun Gothic Semilight", 1, 12)); // NOI18N
         jLabel6.setText("* Busque para ver disponibilidad");
 
-        cbEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-        cbEstado.setText("Actualmente ACTIVA");
-        cbEstado.setEnabled(false);
+        jCheckBoxEstado.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jCheckBoxEstado.setText("Actualmente ACTIVA");
+        jCheckBoxEstado.setEnabled(false);
 
         jButtonGuardar.setBackground(new java.awt.Color(0, 153, 51));
         jButtonGuardar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
         jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -113,15 +120,34 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
         jButtonLimpiar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setBackground(new java.awt.Color(153, 153, 153));
         jButtonBuscar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("AGREGAR/MODIFICAR MATERIA");
+
+        jButtonEditable.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jButtonEditable.setText("Habilitar edición");
+        jButtonEditable.setEnabled(false);
+        jButtonEditable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditableActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,18 +164,18 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(137, 137, 137)
-                                .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextIdMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
                                 .addComponent(jButtonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cbEstado))))))
+                                        .addComponent(jCheckBoxEstado))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -159,14 +185,16 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(24, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonEditable)
+                            .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(52, 52, 52))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(160, 160, 160)
@@ -179,29 +207,31 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
                 .addComponent(jLabel8)
                 .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextIdMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jButtonLimpiar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(cbEstado))))
-                .addGap(51, 51, 51)
+                            .addComponent(jCheckBoxEstado)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jButtonLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEditable)))
+                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonSalir))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,13 +253,117 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
         menu.sesionDocente(user);
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void jTextIdMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextIdMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextIdMateriaActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        int id = 0;
+        try{
+            id = Integer.valueOf(jTextIdMateria.getText());
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"El campo ID solo admite caracteres numéricos mayores a cero");
+        }
+        if(id>0){
+            Materia m = new Materia();
+            if(md.materiaExiste(id)){
+                m = md.buscarMateria(id);
+                jTextAnio.setText(m.getAnio()+"");
+                jTextNombre.setText(m.getNombre());
+                jButtonLimpiar.setEnabled(true);
+                jButtonEditable.setEnabled(true);
+                jTextNombre.setEditable(false);
+                jTextAnio.setEditable(false);
+                jCheckBoxEstado.setEnabled(false);
+                if(m.isActivo())
+                    jCheckBoxEstado.setSelected(true);
+                JOptionPane.showMessageDialog(null, id + " , ya pertenece a una materia en el sistema, si desea puede editar la información");
+            }else{
+                JOptionPane.showMessageDialog(null, id + " , se encuentra disponible. Complete los campos");
+                jButtonGuardar.setEnabled(true);
+                jTextIdMateria.setEditable(false);
+                jTextNombre.setEditable(true);
+                jTextAnio.setEditable(true);
+                jCheckBoxEstado.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimpiarActionPerformed
+        // TODO add your handling code here:
+        jTextNombre.setText("");
+        jTextAnio.setText("");
+        jTextIdMateria.setText("");
+        jButtonLimpiar.setEnabled(true);
+        jTextIdMateria.setEditable(true);
+        jTextNombre.setEditable(false);
+        jTextAnio.setEditable(false);
+        jCheckBoxEstado.setEnabled(false);
+        jButtonEditable.setEnabled(false);
+        jButtonGuardar.setEnabled(false);
+        jCheckBoxEstado.setSelected(false);
+    }//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+    private void jButtonEditableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditableActionPerformed
+        jTextIdMateria.setEditable(false);
+        jButtonLimpiar.setEnabled(false);
+        jTextNombre.setEditable(true);
+        jTextAnio.setEditable(true);
+        jCheckBoxEstado.setEnabled(true);
+        jButtonGuardar.setEnabled(true);
+    }//GEN-LAST:event_jButtonEditableActionPerformed
+
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        // TODO add your handling code here:
+        int id = 0, anio = 0;
+        String nomb = "";
+        boolean exc = false;
+        Materia m = new Materia();
+        try{    
+            id = Integer.valueOf(jTextIdMateria.getText());
+            anio = Integer.valueOf(jTextAnio.getText());
+            nomb = jTextNombre.getText();
+            if ("".equals(nomb) || anio<=0 || anio>5){
+                exc = true;
+                JOptionPane.showMessageDialog(null, "Ingrese un numero entre 1 y 5 para representar el año en que se cursa la materia");
+            }
+        }catch(Exception ex){
+            exc = true;
+        }
+        if (!exc){
+            if (md.materiaExiste(id)){
+                m = md.buscarMateria(id);
+                m.setNombre(nomb);
+                m.setAnio(anio);
+                if(jCheckBoxEstado.isSelected()!= m.isActivo())
+                    md.modificarEstado(id);
+                    md.actualizarMateria(m);
+                    m = md.buscarMateria(id);
+            }else{
+                m.setNombre(nomb);
+                m.setAnio(anio);
+                m.setIdMateria(id);
+                if(jCheckBoxEstado.isSelected())
+                        m.setActivo(true);
+                    else
+                        m.setActivo(false);
+                md.guardarMateria(m);
+            }
+            JOptionPane.showMessageDialog(null,"Materia guardada con éxito");
+        }else
+            JOptionPane.showMessageDialog(null,"Alguno de los campos no cumple con el tipo de dato o se encuentra vacio.");
+        jButtonLimpiarActionPerformed(evt);
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox cbEstado;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonEditable;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JCheckBox jCheckBoxEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,8 +371,8 @@ public class VistaVerModMateria extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jtAnio;
-    private javax.swing.JTextField jtId;
-    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jTextAnio;
+    private javax.swing.JTextField jTextIdMateria;
+    private javax.swing.JTextField jTextNombre;
     // End of variables declaration//GEN-END:variables
 }

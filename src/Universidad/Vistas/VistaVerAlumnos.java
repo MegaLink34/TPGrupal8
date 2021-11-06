@@ -79,6 +79,7 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
         jtEstado1 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jButtonSalir = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -143,6 +144,11 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
         jButtonBuscar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -403,6 +409,16 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Listado de alumnos");
 
+        jButtonSalir.setBackground(new java.awt.Color(204, 0, 51));
+        jButtonSalir.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -410,8 +426,13 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12)
-                .addGap(132, 132, 132))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addGap(132, 132, 132))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 248, Short.MAX_VALUE)
@@ -424,12 +445,14 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
                 .addComponent(jLabel12)
                 .addGap(24, 24, 24)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonSalir)
+                .addGap(0, 15, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 245, Short.MAX_VALUE)
+                    .addGap(0, 270, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 245, Short.MAX_VALUE)))
+                    .addGap(0, 270, Short.MAX_VALUE)))
         );
 
         pack();
@@ -470,6 +493,43 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
         mostrarAlumnos(ad);
     }//GEN-LAST:event_jbActualizarActionPerformed
 
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        int legajo = 0;
+        jTextFecha.setText("");
+        jTextApellido.setText("");
+        jTextNombre.setText("");
+        jTextEstado.setText("");
+        try{
+            legajo = Integer.valueOf(jTextLegajo.getText());
+            if(legajo<=0)
+            JOptionPane.showMessageDialog(null,"El campo Legajo no puede contener un numero negativo o ser igual a cero");
+        else {
+            for(Alumno alm : ad.obtenerAlumnos()){
+                if(alm.getLegajo()== legajo){
+                    jTextFecha.setText(alm.getFechaNac()+"");
+                    jTextNombre.setText(alm.getNombre());
+                    jTextApellido.setText(alm.getApellido());
+                    if(alm.isActivo())
+                        jTextEstado.setText("Activo");
+                    else
+                        jTextEstado.setText("Inactivo");
+                }
+            }
+            if (jTextFecha.getText().equals("") && jTextNombre.getText().equals("") && jTextApellido.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"El Legajo que has buscado no existe. Prueba otro diferente");
+            }
+        }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null,"El campo Legajo solo admite caracteres numéricos");
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        menu.sesionDocente(user);
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
     private void mostrarAlumnos(AlumnoData ad){
         this.ad = ad;
         dtm = (DefaultTableModel) jTableAlumnos.getModel();
@@ -508,6 +568,7 @@ public class VistaVerAlumnos extends javax.swing.JInternalFrame {
     private javax.swing.JCheckBox cbVerInactivos1;
     private javax.swing.JButton jButtonActualizar;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
