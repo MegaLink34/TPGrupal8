@@ -96,7 +96,7 @@ public class AlumnoData {
     
     public void actualizarAlumno(Alumno alumno) {
         String comandoSql = "UPDATE alumno " +
-                "SET legajo=?,nombre=?,apellido=?,fechNac=? WHERE idAlumno=?";
+                "SET legajo=?,nombre=?,apellido=?,fechNac=?, activo=? WHERE idAlumno=?";
         PreparedStatement prepStat;
         
         try {
@@ -106,9 +106,14 @@ public class AlumnoData {
             prepStat.setString(2, alumno.getNombre());
             prepStat.setString(3, alumno.getApellido());
             prepStat.setDate(4, Date.valueOf(alumno.getFechaNac()));
-            
+            if(alumno.isActivo()){
+                prepStat.setInt(5, 1);
+            }else{
+                prepStat.setInt(5, 0);
+            }
             prepStat.setInt(6, alumno.getIdAlumno());
             
+            System.out.println("prerp act alumno: " + prepStat);
             prepStat.executeUpdate();
             
             prepStat.close();

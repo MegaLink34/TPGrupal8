@@ -93,6 +93,8 @@ public class UsuarioData {
     }
     
     public void actualizarUsuario(Usuario usuario) {
+        
+        System.out.println("act usuario: " + usuario.getIdUsuario());
         String comandoSql = "UPDATE usuario " +
                 "SET nombreUsuario=?, passwordUsuario=?, rolUsuario=?, activo=? WHERE idUsuario=?";
         PreparedStatement prepStat;
@@ -105,12 +107,12 @@ public class UsuarioData {
             prepStat.setString(2, usuario.getPasswordUsuario());
             prepStat.setInt(3, usuario.getRolUsuario());
             if(usuario.isActivoUsuario()){
-                prepStat.setInt(3, 1);
+                prepStat.setInt(4, 1);
             }else{
-                prepStat.setInt(3, 0);
+                prepStat.setInt(4, 0);
             }
-            prepStat.setInt(4, usuario.getIdUsuario());
-            
+            prepStat.setInt(5, usuario.getIdUsuario());
+            System.out.println("Prep: " + prepStat);
             prepStat.executeUpdate();
             
             prepStat.close();

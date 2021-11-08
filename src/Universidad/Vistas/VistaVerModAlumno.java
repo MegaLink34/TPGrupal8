@@ -31,6 +31,7 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
     private MateriaData md;
     private UsuarioData uDat;
     private MenuPrincipal menu;
+    private Alumno modAlumno;
     private int id;
     
     /**
@@ -43,6 +44,7 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
         this.ad = ad;        
         this.uDat = uDat;
         this.menu = menu;
+        modAlumno = new Alumno();
         initComponents();
     }
 
@@ -73,6 +75,10 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jCheckBoxEstado = new javax.swing.JCheckBox();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jTextApellido1 = new javax.swing.JTextField();
+        jTextNombre1 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -153,6 +159,18 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextApellido1.setEditable(false);
+        jTextApellido1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jTextNombre1.setEditable(false);
+        jTextNombre1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel8.setText("Usuario");
+
+        jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jLabel9.setText("Contraseña");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -172,7 +190,9 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
                                 .addGap(48, 48, 48)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jTextNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
@@ -184,7 +204,9 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextApellido1, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextNombre1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -229,7 +251,15 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                             .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonSalir)
@@ -287,7 +317,7 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                         else { 
                             jCheckBoxEstado.setSelected(false);
                         }
-                        
+                        modAlumno.setIdAlumno(id);
                         jTextApellido.setEditable(true);
                         jTextNombre.setEditable(true);
                         jCheckBoxEstado.setEnabled(true);
@@ -344,12 +374,22 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
             LocalDate fe = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             System.out.println(fe);
             if (ok== false) {
-                Alumno a1 = new Alumno(legajo, nombre, apellido, fe, jCheckBoxEstado.isSelected());
-                ad.guardarAlumno(a1);
+                modAlumno.setLegajo(legajo);
+                modAlumno.setNombre(nombre);
+                modAlumno.setApellido(apellido);
+                modAlumno.setFechaNac(fe);
+                modAlumno.setActivo(jCheckBoxEstado.isSelected());
+                
+                ad.guardarAlumno(modAlumno);
             }
                 else {
-                    Alumno a1 = new Alumno(legajo, nombre, apellido, fe, jCheckBoxEstado.isSelected());
-                    ad.actualizarAlumno(a1);
+                    modAlumno.setLegajo(legajo);
+                    modAlumno.setNombre(nombre);
+                    modAlumno.setApellido(apellido);
+                    modAlumno.setFechaNac(fe);
+                    modAlumno.setActivo(jCheckBoxEstado.isSelected());
+                
+                    ad.actualizarAlumno(modAlumno);
                 }
             jButtonGuardar.setEnabled(false);
             this.jButtonLimpiarActionPerformed(evt);
@@ -372,10 +412,14 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextApellido;
+    private javax.swing.JTextField jTextApellido1;
     private javax.swing.JTextField jTextFecha;
     private javax.swing.JTextField jTextLegajo;
     private javax.swing.JTextField jTextNombre;
+    private javax.swing.JTextField jTextNombre1;
     // End of variables declaration//GEN-END:variables
 }

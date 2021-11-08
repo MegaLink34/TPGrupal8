@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-11-2021 a las 17:04:41
+-- Tiempo de generación: 08-11-2021 a las 00:48:19
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.11
 
@@ -93,7 +93,7 @@ CREATE TABLE `usuario` (
   `nombreUsuario` varchar(30) NOT NULL,
   `passwordUsuario` varchar(30) NOT NULL,
   `rolUsuario` int(1) NOT NULL,
-  `activo` int(1) NOT NULL
+  `activo` int(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -104,13 +104,7 @@ INSERT INTO `usuario` (`idUsuario`, `idAlumno`, `nombreUsuario`, `passwordUsuari
 (1, 0, 'sysadmin', 'sysadmin', 1, 1),
 (2, 1, 'alumno', 'alumno', 3, 1),
 (3, 0, 'docente', 'docente', 2, 1),
-(7, 0, 'asd', 'asd', 2, 0),
-(8, 0, 'qwe', 'qwe', 3, 0),
-(9, 0, 'qwe', 'qwe', 3, 0),
-(10, 0, 'qwe', 'qwe', 3, 0),
-(11, 0, 'qwe', 'qwe', 3, 0),
-(12, 0, 'qwe', 'qwe', 3, 0),
-(13, 0, 'qwe', 'qwe', 3, 0);
+(16, 0, 'asd', 'asd', 1, 0);
 
 --
 -- Índices para tablas volcadas
@@ -170,7 +164,7 @@ ALTER TABLE `materia`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas

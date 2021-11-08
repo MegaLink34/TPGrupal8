@@ -30,6 +30,7 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
         this.user = user;
         this.uDat = uDat;
         this.menu = menu;
+        modUser = new Usuario();
         initComponents();
         jButtonGuardar.setEnabled(false);
         jButtonResetPass.setEnabled(false);
@@ -233,7 +234,21 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
 
     private void jButtonResetPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonResetPassActionPerformed
         // TODO add your handling code here:
-        
+        switch(jComboBoxRol.getSelectedIndex()){
+            case 0:
+                jPasswordField.setText("sysadmin");
+                jButtonResetPass.setEnabled(false);
+                jPasswordField.setEnabled(false);
+                break;
+            case 1:
+                jPasswordField.setText("docente");
+                jButtonResetPass.setEnabled(false);
+                jPasswordField.setEnabled(false);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(this,"Para modificar un usuario alumno conecte con una cuenta docente.");
+                break;
+        }
     }//GEN-LAST:event_jButtonResetPassActionPerformed
 
     private void jCheckBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxEstadoActionPerformed
@@ -265,16 +280,25 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
             if(jButtonGuardar.getText().equals("Modificar")){
                 switch(jComboBoxRol.getSelectedIndex()){
                     case 0:
-                        modUser = new Usuario(jTextNombre.getText(), jPasswordField.getText(), 1, jCheckBoxEstado.isSelected());
+                        modUser.setNombreUsuario(jTextNombre.getText());
+                        modUser.setPasswordUsuario(jPasswordField.getText());
+                        modUser.setRolUsuario(1);
+                        modUser.setActivoUsuario(jCheckBoxEstado.isSelected());
+                        
                         uDat.actualizarUsuario(modUser);
+                        JOptionPane.showMessageDialog(this,"El usuario fue modificado.");
                         break;
                     case 1:
-                        modUser = new Usuario(jTextNombre.getText(), jPasswordField.getText(), 2, jCheckBoxEstado.isSelected());
+                        modUser.setNombreUsuario(jTextNombre.getText());
+                        modUser.setPasswordUsuario(jPasswordField.getText());
+                        modUser.setRolUsuario(2);
+                        modUser.setActivoUsuario(jCheckBoxEstado.isSelected());
+                        
                         uDat.actualizarUsuario(modUser);
+                        JOptionPane.showMessageDialog(this,"El usuario fue modificado.");
                         break;
                     case 2:
-                        modUser = new Usuario(jTextNombre.getText(), jPasswordField.getText(), 3, jCheckBoxEstado.isSelected());
-                        uDat.actualizarUsuario(modUser);
+                        JOptionPane.showMessageDialog(this,"Para modificar un usuario alumno conecte con una cuenta docente.");
                         break;
                 }
             }else{
@@ -282,10 +306,12 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
                     case 0:
                         modUser = new Usuario(jTextNombre.getText(), jPasswordField.getText(), 1, jCheckBoxEstado.isSelected());
                         uDat.guardarUsuario(modUser);
+                        JOptionPane.showMessageDialog(this,"Usuario nuevo ingresado.");
                         break;
                     case 1:
                         modUser = new Usuario(jTextNombre.getText(), jPasswordField.getText(), 2, jCheckBoxEstado.isSelected());
                         uDat.guardarUsuario(modUser);
+                        JOptionPane.showMessageDialog(this,"Usuario nuevo ingresado.");
                         break;
                     case 2:
                         JOptionPane.showMessageDialog(this,"Para ingresar un usuario alumno conecte con una cuenta docente.");
@@ -315,6 +341,9 @@ public class VistaVerModUsuario extends javax.swing.JInternalFrame {
                 jButtonResetPass.setEnabled(true);
                 jPasswordField.setText(result.getPasswordUsuario());
                 jCheckBoxEstado.setSelected(result.isActivoUsuario());
+                System.out.println("Id: " + result.getIdUsuario());
+                modUser.setIdUsuario(result.getIdUsuario());
+                System.out.println("Id mod: " + modUser.getIdUsuario());
                 switch(result.getRolUsuario()){
                     case 1:
                         jComboBoxRol.setSelectedIndex(0);

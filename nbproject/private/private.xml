@@ -3,15 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/VistaVerMaterias.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/VistaInscripcionAlumno.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/VistaMenuAlumno.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/VistaMenuDocente.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/VistaVerAlumnos.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/VistaVerModMateria.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Vistas/MenuPrincipal.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Modelo/Usuario.java</file>
-            <file>file:/D:/Mauri/Universidad/Ahora/ULP/3er%20Cuatrimestre/Laboratorio%20de%20programacion%20l/Realidad%201%20universidad/TPGrupal8/src/Universidad/Modelo/Inscripcion.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Control/UsuarioData.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerInscriptos.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Modelo/Usuario.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerAlumnos.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaInscripcion.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Control/AlumnoData.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/MenuPrincipal.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerModUsuario.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaMenuAdmin.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerMaterias.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaMenuDocente.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerModMateria.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/TemplateDeVistas.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaInscripcionBajaAlumno.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaInicio.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerModNotas.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaVerModAlumno.java</file>
+            <file>file:/D:/Trabajo/Software/Lab/Projects/Practico_8/TPGrupal8/src/Universidad/Vistas/VistaMenuAlumno.java</file>
         </group>
     </open-files>
 </project-private>
