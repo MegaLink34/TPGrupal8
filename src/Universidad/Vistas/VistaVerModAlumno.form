@@ -78,8 +78,8 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jTextApellido1" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextNombre1" alignment="0" pref="347" max="32767" attributes="0"/>
+                                      <Component id="jTextNombreUsuario" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jPasswordFieldUsuario" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -145,15 +145,15 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextApellido1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jTextNombre1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+                      <Component id="jPasswordFieldUsuario" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -324,15 +324,7 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextApellido1">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Malgun Gothic Semilight" size="16" style="0"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTextNombre1">
+        <Component class="javax.swing.JTextField" name="jTextNombreUsuario">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -354,6 +346,11 @@
               <Font name="Malgun Gothic Semilight" size="16" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="jPasswordFieldUsuario">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

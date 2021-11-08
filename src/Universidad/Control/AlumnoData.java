@@ -25,12 +25,12 @@ public class AlumnoData {
         
     }
     
-    public void guardarAlumno(Alumno alumno){
+    public void guardarAlumno(Alumno alumno, String nombre, String pass){
         String comandoSql = "INSERT INTO alumno (legajo, nombre, apellido, "
                 + "fechNac, activo) VALUES (?,?,?,?,?)";
         
         PreparedStatement prepStat;
-        System.out.println("guardar alumno: " + alumno);
+        
         try {
             prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
             
@@ -48,6 +48,18 @@ public class AlumnoData {
             }
             
             prepStat.close();
+            
+            comandoSql = "INSERT INTO usuario (idAlumno, nombreUsuario, passwordUsuario, rolUsuario, activo) VALUES (?,?,?,?,?)";
+        
+            prepStat = conexion.prepareStatement(comandoSql, Statement.RETURN_GENERATED_KEYS);
+            
+            prepStat.setInt(1, alumno.getIdAlumno());
+            prepStat.setString(2, nombre);
+            prepStat.setString(3, pass);
+            prepStat.setInt(4, 3);
+            prepStat.setBoolean(5, alumno.isActivo());
+            
+            prepStat.executeUpdate();
             
         } catch (SQLException ex) {
             System.out.println("Error al insertar");

@@ -75,10 +75,10 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jCheckBoxEstado = new javax.swing.JCheckBox();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextApellido1 = new javax.swing.JTextField();
-        jTextNombre1 = new javax.swing.JTextField();
+        jTextNombreUsuario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jPasswordFieldUsuario = new javax.swing.JPasswordField();
 
         setClosable(true);
 
@@ -159,17 +159,16 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextApellido1.setEditable(false);
-        jTextApellido1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
-
-        jTextNombre1.setEditable(false);
-        jTextNombre1.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
+        jTextNombreUsuario.setEditable(false);
+        jTextNombreUsuario.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel8.setText("Usuario");
 
         jLabel9.setFont(new java.awt.Font("Malgun Gothic Semilight", 0, 16)); // NOI18N
         jLabel9.setText("Contraseña");
+
+        jPasswordFieldUsuario.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -205,8 +204,8 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                                         .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextApellido1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextNombre1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+                                    .addComponent(jTextNombreUsuario, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPasswordFieldUsuario))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -253,13 +252,13 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                             .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jPasswordFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
                     .addComponent(jButtonSalir)
@@ -320,6 +319,8 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                         modAlumno.setIdAlumno(id);
                         jTextApellido.setEditable(true);
                         jTextNombre.setEditable(true);
+                        jTextNombreUsuario.setEditable(true);
+                        jPasswordFieldUsuario.setEditable(true);
                         jCheckBoxEstado.setEnabled(true);
                         jButtonGuardar.setEnabled(true);
                         ok = true;
@@ -329,6 +330,8 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                     this.jButtonLimpiarActionPerformed(evt);
                     jTextApellido.setEditable(true);
                     jTextNombre.setEditable(true);
+                    jTextNombreUsuario.setEditable(true);
+                    jPasswordFieldUsuario.setEditable(true);
                     jTextLegajo.setText(String.valueOf(legajo));
                     jCheckBoxEstado.setEnabled(true);
                     JOptionPane.showMessageDialog(this , legajo+" ,está disponible para usar");
@@ -380,7 +383,7 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
                 modAlumno.setFechaNac(fe);
                 modAlumno.setActivo(jCheckBoxEstado.isSelected());
                 
-                ad.guardarAlumno(modAlumno);
+                ad.guardarAlumno(modAlumno, jTextNombreUsuario.getText(), jPasswordFieldUsuario.getText());
             }
                 else {
                     modAlumno.setLegajo(legajo);
@@ -415,11 +418,11 @@ public class VistaVerModAlumno extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordFieldUsuario;
     private javax.swing.JTextField jTextApellido;
-    private javax.swing.JTextField jTextApellido1;
     private javax.swing.JTextField jTextFecha;
     private javax.swing.JTextField jTextLegajo;
     private javax.swing.JTextField jTextNombre;
-    private javax.swing.JTextField jTextNombre1;
+    private javax.swing.JTextField jTextNombreUsuario;
     // End of variables declaration//GEN-END:variables
 }
