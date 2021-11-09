@@ -287,4 +287,27 @@ public class UsuarioData {
             System.out.println("Error al eliminar Usuario");
         }
     }
+    
+    public int buscarIdAlumno(int id){
+        String comandoSql = "SELECT idAlumno FROM usuario WHERE idUsuario=?";
+        int resultado = 0;
+        System.out.println("sql" + comandoSql);
+        
+        try {
+            
+            PreparedStatement prepStat = conexion.prepareStatement(comandoSql);
+            
+            prepStat.setInt(1, id);
+            ResultSet resultSet = prepStat.executeQuery();
+            
+            if (resultSet.next()){
+                resultado = resultSet.getInt("idAlumno");
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al encontrar id alumno");
+        }
+        
+        return resultado;
+    }
 }

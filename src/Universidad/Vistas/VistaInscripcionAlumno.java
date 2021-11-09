@@ -210,13 +210,10 @@ public class VistaInscripcionAlumno extends javax.swing.JInternalFrame {
 
     private void jButtonInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscripcionActionPerformed
         // TODO add your handling code here:
-       /*
-        Alumno a1 = (Alumno)jTextNombreAlumno.getSelectedItem();
+        int a1 = uDat.buscarIdAlumno(user.getIdUsuario());
         Materia m1 = (Materia)jComboBoxMateria.getSelectedItem();
-        Inscripcion ins1 = new Inscripcion(m1, a1);
-        insDat.guardarCursada(ins1);
+        insDat.guardarCursada(a1, m1.getIdMateria());
         jButtonInscripcion.setEnabled(false);
-*/
     }//GEN-LAST:event_jButtonInscripcionActionPerformed
 
 

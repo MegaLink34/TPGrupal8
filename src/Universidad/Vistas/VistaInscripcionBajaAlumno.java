@@ -72,7 +72,7 @@ public class VistaInscripcionBajaAlumno extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Inscripción");
+        jLabel4.setText("Dar de baja a un alumno de una materia");
 
         jComboBoxMateria.setBackground(new java.awt.Color(0, 51, 255));
         jComboBoxMateria.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -122,13 +122,13 @@ public class VistaInscripcionBajaAlumno extends javax.swing.JInternalFrame {
                         .addGap(216, 216, 216)
                         .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBoxMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel4)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -193,13 +193,10 @@ public class VistaInscripcionBajaAlumno extends javax.swing.JInternalFrame {
 
     private void jButtonInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscripcionActionPerformed
         // TODO add your handling code here:
-        /*
-        Alumno a1 = (Alumno)jComboBoxAlumnos.getSelectedItem();
+        int a1 = uDat.buscarIdAlumno(user.getIdUsuario());
         Materia m1 = (Materia)jComboBoxMateria.getSelectedItem();
-        Inscripcion ins1 = new Inscripcion(m1, a1);
-        insDat.guardarCursada(ins1);
+        insDat.borrarInscripcionDeUnaMateria(a1, m1.getIdMateria());
         jButtonInscripcion.setEnabled(false);
-*/
     }//GEN-LAST:event_jButtonInscripcionActionPerformed
 
 
