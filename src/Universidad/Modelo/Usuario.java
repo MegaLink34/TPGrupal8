@@ -26,6 +26,8 @@ public class Usuario {
         this.activo = activo;
     }
 
+    
+    
     public int getIdUsuario() {
         return idUsuario;
     }

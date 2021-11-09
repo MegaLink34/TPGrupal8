@@ -34,22 +34,19 @@ public class InscripcionData {
         }
     }
     
-    public void guardarCursada(Inscripcion c){
-        String sql="INSERT INTO inscripcion (idAlumno,idMateria,nota) VALUES (?,?,?)";       
+    public void guardarCursada(int idA, int idM){
+        String sql="INSERT INTO inscripcion (idAlumno,idMateria) VALUES (?,?)";       
         try {
             PreparedStatement prepStat = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            prepStat.setInt(1, c.getAlumno().getIdAlumno());
-            prepStat.setInt(2, c.getMateria().getIdMateria());
-            prepStat.setDouble(3, c.getNota());
+            prepStat.setInt(1, idA);
+            prepStat.setInt(2, idM);
+            System.out.println(prepStat);
             prepStat.executeUpdate();
-            ResultSet rs = prepStat.getGeneratedKeys();
-            if(rs.next()){
-                c.setIdInscripcion(rs.getInt(1));
-                System.out.println("Inscripcion exitosa");
-            }
+            
             prepStat.close();
         } catch (SQLException ex) {
-            System.out.println("Error al Guardar");
+            System.out.println("Error al Guardar" + ex);
+            
         }  
     }
     
