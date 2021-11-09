@@ -118,6 +118,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
         vistaInscripcionAlumno.setVisible(true);
     }
     
+    public void verBajaMateria(){
+        VistaBajaMateria vistaBajaMateria = new VistaBajaMateria(this, conexion, alumnoData, materiaData, inscripcionData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaBajaMateria);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaBajaMateria);
+
+        vistaBajaMateria.setVisible(true);
+    }
+    
+    public void verBajaAlumno(){
+        VistaBajaAlumno vistaBajaAlumno = new VistaBajaAlumno(this, conexion, alumnoData, materiaData, inscripcionData);
+        jDesktopPane.removeAll();
+        jDesktopPane.moveToFront(vistaBajaAlumno);
+        jDesktopPane.repaint();
+        jDesktopPane.add(vistaBajaAlumno);
+
+        vistaBajaAlumno.setVisible(true);
+    }
+    
      public void verInscripcionBajaAlumno(){
         VistaInscripcionBajaAlumno vistaInscripcionBajaAlumno = new VistaInscripcionBajaAlumno(this, user, alumnoData, materiaData, inscripcionData, usuarioData);
         jDesktopPane.removeAll();

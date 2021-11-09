@@ -105,6 +105,11 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
         jButtonBajaAlumno.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jButtonBajaAlumno.setForeground(new java.awt.Color(255, 255, 255));
         jButtonBajaAlumno.setText("Dar de Baja Alumno");
+        jButtonBajaAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBajaAlumnoActionPerformed(evt);
+            }
+        });
 
         jButtonVerModMateria.setBackground(new java.awt.Color(153, 153, 153));
         jButtonVerModMateria.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -168,8 +173,8 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
                         .addGap(113, 113, 113)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonVerAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonBajaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonVerModMateria))))
+                            .addComponent(jButtonVerModMateria)
+                            .addComponent(jButtonBajaMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -199,7 +204,7 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
                 .addComponent(jButtonBajaMateria)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonVerAlumnos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jButtonSalir)
                 .addGap(24, 24, 24))
         );
@@ -244,8 +249,14 @@ public class VistaMenuDocente extends javax.swing.JInternalFrame {
 
     private void jButtonBajaMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaMateriaActionPerformed
         // TODO add your handling code here:
+        menu.verBajaMateria();
        ///////////////////////////////////////////// -> ACA VA UNA FUNCION <-
     }//GEN-LAST:event_jButtonBajaMateriaActionPerformed
+
+    private void jButtonBajaAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBajaAlumnoActionPerformed
+        // TODO add your handling code here:
+        menu.verBajaAlumno();
+    }//GEN-LAST:event_jButtonBajaAlumnoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
