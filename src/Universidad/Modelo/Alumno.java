@@ -53,7 +53,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno{" + "idAlumno=" + idAlumno + ", legajo=" + legajo + ", apellido=" + apellido + ", nombre=" + nombre + ", fechaNac=" + fechaNac + ", activo=" + activo + '}';
+        return "Nombre: " + nombre + " - Legajo: " + legajo;
     }
     
     /* SETTERS */

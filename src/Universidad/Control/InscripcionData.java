@@ -310,7 +310,7 @@ public class InscripcionData {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion.");
+            JOptionPane.showMessageDialog(null,"Error de conexion InscripcionData.");
         }
     }
     
@@ -329,11 +329,11 @@ public class InscripcionData {
                 i.setAlumno(a);
                 i.setMateria(m);
                 i.setNota(rs.getFloat("nota"));
-                i.setIdInscripcion(rs.getInt("idInscripcion"));
+                i.setIdInscripcion(rs.getInt("idInsc"));
                 li.add(i);
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Error de conexion.");
+            JOptionPane.showMessageDialog(null,"Error de conexion al obtener Inscripcion por Alumno." + ex);
         }
         return li;
     }

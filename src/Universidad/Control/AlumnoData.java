@@ -20,7 +20,7 @@ public class AlumnoData {
         try {
             this.conexion = conexion.getConexion();
         } catch (SQLException ex) {
-            System.out.println("Error en la conexión");
+            System.out.println("Error en la conexión AlumnoData");
         }
         
     }

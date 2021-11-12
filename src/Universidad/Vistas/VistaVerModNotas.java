@@ -266,10 +266,14 @@ public class VistaVerModNotas extends javax.swing.JInternalFrame {
             jComboBoxMateria.removeAllItems();
             jComboBoxMateria.addItem(null);
             Alumno a = (Alumno)jComboBoxAlumno.getSelectedItem();
+            System.out.println("Alumno seleccionado: " + a);
+            System.out.println("id Alumno seleccionado: " + a.getIdAlumno());
             Iterator <Inscripcion> itI = insDat.obtenerInscripcionxAlumno(a.getIdAlumno()).iterator();
             if (itI.hasNext()){
+                System.out.println("Has next.");
                 while(itI.hasNext()){
                     Inscripcion c1 = itI.next();
+                    System.out.println("Inscrip: " + c1);
                     Materia m = c1.getMateria();
                     String []row = new String[3];
                     row[0] = m.getIdMateria()+"";
@@ -281,8 +285,7 @@ public class VistaVerModNotas extends javax.swing.JInternalFrame {
                     jButtonConfirmar.setEnabled(true);
                 }
                 jComboBoxAlumno.setEnabled(false);
-            }
-            else{
+            }else{
                 JOptionPane.showMessageDialog(null, "El alumno que seleccionó, no se encuentra inscripto en ninguna materia");
             }
         }
